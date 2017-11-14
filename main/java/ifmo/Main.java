@@ -17,10 +17,11 @@ public class Main {
 
     public static void main(String[] args){
         ApplicationContext context = new AnnotationConfigApplicationContext(DataConfig.class);
-      ArticleServiceImpl serv = context.getBean(ArticleServiceImpl.class);
+      ArticleRepo serv = context.getBean(ArticleRepo.class);
         System.out.println("Hello!");
-        Human human  = new Human(1,"ANON","ANONIM","ANONIMOUS","QWERTY");
+        Human human  = new Human(3,"ANON12","ANONIM12","ANONIMOUS12","QWERTY12");
        // serv.removeByName("ARTICL");
+     //   serv.update("ARTICLE12",human, "UPDATED-name", "updated+body", new Timestamp(System.currentTimeMillis()));
         List<Article> list = serv.findByAuthor(human);
         System.out.print(list.get(0).getName());
     }

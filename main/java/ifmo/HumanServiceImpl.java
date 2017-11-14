@@ -24,4 +24,6 @@ public     List<Human> findByName(String name){return  repo.findByName(name);}
    public void delete(Human human){repo.delete(human);}
 public     void save(Human human){repo.save(human);}
 public Human findOne(int id){return  repo.findOne(id);}
+   public void updateHuman(String name, String surname, String login, String passw, String prevLog){repo.updateHuman(name, surname,login,passw,prevLog);}
+
 }

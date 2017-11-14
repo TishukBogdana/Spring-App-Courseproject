@@ -19,4 +19,6 @@ public class SeriesServiceImpl implements SeriesService{
    public Series findOne(int id){return repo.findOne(id);}
    public void save(Series series){repo.save(series);}
     public void delete (Series series){repo.delete(series);}
+ public    void updateSeries(String name, String descr, String prevName){repo.updateSeries(name, descr, prevName);}
+
 }

@@ -12,4 +12,5 @@ public interface PersonService {
     Person findOne(int id);
     void delete(Person person);
     void save(Person person);
+    void updatePerson(String name, String surname,String descr, String prevName, String prevSurname);
 }

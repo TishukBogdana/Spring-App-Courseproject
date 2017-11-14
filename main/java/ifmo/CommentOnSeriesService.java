@@ -19,4 +19,6 @@ public interface CommentOnSeriesService {
     CommentOnSeries findOne(int id);
     void delete(CommentOnSeries comment);
     void save(CommentOnSeries comment);
+    void updateComment(String content, Timestamp stamp, int id);
+
 }

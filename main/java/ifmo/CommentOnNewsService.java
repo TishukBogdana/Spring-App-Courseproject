@@ -1,5 +1,7 @@
 package ifmo;
 
+import org.springframework.data.jpa.repository.Modifying;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,4 +21,7 @@ public interface CommentOnNewsService {
     CommentOnNews findOne(int id);
     void delete(CommentOnNews comment);
     void save(CommentOnNews comment);
+    void updateComment(String content, Timestamp stamp, int id);
+
+
 }

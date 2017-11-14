@@ -14,4 +14,6 @@ public interface CommentOnTVSeriesService {
     CommentOnTvSeries findOne(int id);
     void delete(CommentOnTvSeries comment);
     void save(CommentOnTvSeries comment);
+    void updateComment(String content, Timestamp stamp, int id);
+
 }

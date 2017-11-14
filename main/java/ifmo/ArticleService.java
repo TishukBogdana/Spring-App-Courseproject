@@ -19,5 +19,5 @@ public interface ArticleService {
    Article findOne(int id);
     void removeByName(String name);
     void removeByAuthor(Human author);
-
+    void updateByNameAndBody(String prev , Human author, String name, String body, Timestamp stamp);
 }

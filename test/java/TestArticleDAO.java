@@ -73,7 +73,10 @@ public class TestArticleDAO extends Assert {
         assertEquals(0,list.size());
     }
 @Test
-    public void removeByDateIsBefore(Timestamp date){
-
+    public void testUpdateByNameAndBody(String prev, Human author, String name, String body, Timestamp stamp){
+        List<Article> before = serv.findByNameAndAuthor(prev,author);
+    serv.updateByNameAndBody(prev,author, name, body,stamp);
+    List<Article>after = serv.findByNameAndAuthor(name,author);
+     assertNotEquals(before,after);
 }
 }

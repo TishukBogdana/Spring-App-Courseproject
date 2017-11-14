@@ -22,4 +22,6 @@ public class CommentOnTVSeriesImpl implements CommentOnTVSeriesService {
    public CommentOnTvSeries findOne(int id){return repo.findOne(id);}
   public   void delete(CommentOnTvSeries comment){repo.delete(comment);}
   public   void save(CommentOnTvSeries comment){repo.save(comment);}
+    public void updateComment(String content, Timestamp stamp, int id){repo.updateComment(content, stamp,id);}
+
 }

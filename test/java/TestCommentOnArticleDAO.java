@@ -41,4 +41,11 @@ public class TestCommentOnArticleDAO extends Assert {
         serv.save(comment);
         assertNotNull(serv.findOne(comment.getId()));
     }
+    @Test
+    public void testUpdateComment(String content, Timestamp stamp, int id){
+        Timestamp before = serv.findOne(id).getDateAdd();
+        serv.updateComment(content,stamp,id);
+        Timestamp after = serv.findOne(id).getDateAdd();
+        assertNotEquals(before, after);
+    }
 }

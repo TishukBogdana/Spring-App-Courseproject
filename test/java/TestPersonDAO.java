@@ -28,4 +28,12 @@ public class TestPersonDAO extends Assert {
         serv.save(person);
         assertNotNull(serv.findOne(person.getIdPerson()));
     }
+    @Test
+    public void testUpdatePerson(String name,String surname, String descr, String prevName, String prevSurname){
+        Person before = serv.findByNameAndSurname(prevName,prevSurname).get(0);
+        serv.updatePerson(name, surname, descr,prevName, prevSurname);
+        Person after = serv.findByNameAndSurname(name,surname).get(0);
+        assertNotEquals(before, after);
+    }
+
 }

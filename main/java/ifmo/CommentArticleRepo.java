@@ -1,8 +1,10 @@
 package ifmo;
 
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
@@ -23,4 +25,8 @@ public interface CommentArticleRepo extends CrudRepository<CommentOnArticle, Int
     @Transactional
     @Query("delete from CommentOnArticle  com where com.author = ?1")
  void removeByAuthor(Human author);
+    @Modifying
+    @Transactional
+    @Query("update CommentOnArticle set content =:content, dateAdd=:date where id=:id")
+    void updateComment(@Param("content") String content, @Param("date") Timestamp stamp,@Param("id") int id );
 }

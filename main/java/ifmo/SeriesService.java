@@ -12,4 +12,5 @@ public interface SeriesService {
     Series findOne(int id);
     void save(Series series);
     void delete (Series series);
+    void updateSeries(String name, String descr, String prevName);
 }

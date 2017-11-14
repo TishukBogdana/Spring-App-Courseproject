@@ -15,4 +15,5 @@ public interface HumanService {
     void save(Human human);
     Human findOne(int id);
     void removeByLogin(String login);
+    void updateHuman(String name, String surname, String login, String passw, String prevLog);
 }

@@ -33,4 +33,11 @@ public class TestSeriesDAO extends Assert {
         serv.removeByName(name);
         assertEquals(0,serv.findByName(name).size());
     }
+    @Test
+    public void testUpdateSeries(String name, String descr, String prevName){
+        Series before = serv.findByName(prevName).get(0);
+        serv.updateSeries(name, descr, prevName);
+        Series after = serv.findByName(name).get(0);
+        assertNotEquals(before, after);
+    }
 }

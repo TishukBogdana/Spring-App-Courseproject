@@ -48,4 +48,11 @@ public class TestHumanDAO extends Assert {
         human =serv.findOne(human.getIdHuman());
         assertNotNull(human);
     }
+    @Test
+    public void testUpdateHuman(String name, String surname, String login, String passw, String prevLog){
+        Human before = serv.findByLogin(prevLog).get(0);
+        serv.updateHuman(name, surname,login,passw, prevLog);
+        Human after = serv.findByLogin(login).get(0);
+         assertNotEquals(before, after);
+    }
 }

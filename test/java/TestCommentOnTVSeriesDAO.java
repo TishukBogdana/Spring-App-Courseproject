@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 
+import java.sql.Timestamp;
+
 /**
  * Created by Богдана on 14.11.2017.
  */
@@ -31,5 +33,12 @@ public class TestCommentOnTVSeriesDAO extends Assert {
     public void testSave(CommentOnTvSeries comment){
         serv.save(comment);
         assertNotNull(serv.findOne(comment.getId()));
+    }
+    @Test
+    public void testUpdateComment(String content, Timestamp stamp, int id){
+        Timestamp before = serv.findOne(id).getDateAdd();
+        serv.updateComment(content,stamp,id);
+        Timestamp after = serv.findOne(id).getDateAdd();
+        assertNotEquals(before, after);
     }
 }

@@ -26,4 +26,6 @@ public class CommentOnArticleServiceImpl implements CommentOnArticleService {
    public CommentOnArticle findOne(int id){return repo.findOne(id);}
     public void delete(CommentOnArticle comment){repo.delete(comment);}
     public  void save(CommentOnArticle comment){repo.save(comment);}
+   public void updateComment(String content, Timestamp stamp, int id){repo.updateComment(content, stamp,id);}
+
 }

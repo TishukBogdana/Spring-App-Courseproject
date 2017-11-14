@@ -3,6 +3,7 @@ package ifmo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,4 +21,8 @@ public interface CommentTVRepo extends CrudRepository<CommentOnTvSeries, Integer
     @Transactional
     @Query("delete from CommentOnTvSeries  com where com.author =?1")
    void removeByAuthor(Human author);
+    @Modifying
+    @Transactional
+    @Query("update CommentOnTvSeries set content =:content, dateAdd=:date where id=:id")
+    void updateComment(@Param("content") String content, @Param("date") Timestamp stamp, @Param("id") int id );
 }

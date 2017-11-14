@@ -31,4 +31,5 @@ public class ArticleServiceImpl implements ArticleService{
     public Article findOne(int id){return repo.findOne(id);}
    public void removeByName(String name){ repo.removeByName(name);}
     public void removeByAuthor(Human author){repo.removeByAuthor(author);}
+  public   void updateByNameAndBody(String prev , Human author, String name, String body, Timestamp stamp){repo.updateNameAndBody(prev, author, name, body,stamp);}
 }

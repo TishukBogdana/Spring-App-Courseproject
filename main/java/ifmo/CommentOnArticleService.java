@@ -18,4 +18,5 @@ public interface CommentOnArticleService {
     CommentOnArticle findOne(int id);
     void delete(CommentOnArticle comment);
     void save(CommentOnArticle comment);
+    void updateComment(String content, Timestamp stamp, int id);
 }

@@ -55,6 +55,8 @@ public class TestAll extends Assert {
        testArt.restRemoveByName("test");
         Human human2  = new Human(2,"ANON1","ANONIM1","ANONIMOUS1","QWERTY1");
        testArt.restRemoveByAuthor(human2);
+        Human human3  = new Human(3,"ANON12","ANONIM12","ANONIMOUS12","QWERTY12");
+       testArt.testUpdateByNameAndBody("UPDATED",human3, "UPDATED", "updated-body", new Timestamp(System.currentTimeMillis()));
     }
 
     @Test
@@ -63,24 +65,25 @@ public class TestAll extends Assert {
         testHum.testFindBySurname("ANONIM12",1);
         testHum.testFindByLogin("ANONIMOUS",1);
         testHum.testFindByNameAndSurname("ANON","ANONIM",1);
-        testHum.testRemoveByLogin("VASYA01");
+        testHum.testRemoveByLogin("updated_log");
         Human human= new Human();
         human.setName("VASYA");
         human.setSurname("PETROV");
-        human.setLogin("VASYA01");
+        human.setLogin("VASYA03");
         human.setPassword("qwerty");
         testHum.testSave(human);
+        testHum.testUpdateHuman("updated name","upd_surname","updated_log","new_passworg",human.getLogin());
     }
     @Test
     public  void testSeries(){
 
-        testSer.testFindByName("SERIA",1);
-        testSer.testRemoveByName("SERIA");
+        testSer.testFindByName("upd seria",1);
+        testSer.testRemoveByName("upd seria");
         Series series = new Series();
         series.setName("SERIA");
         series.setPlot("something about");
         testSer.testSave(series);
-
+        testSer.testUpdateSeries("upd seria", "upd plot", "SERIA");
     }
     @Test
     public  void testPerson(){
@@ -90,7 +93,8 @@ public class TestAll extends Assert {
         person.setDescription("Positive");
         testPerson.testSave(person);
         testPerson.testFindByNameAndSurname("HERO", "SURNAME HERO", 1);
-        testPerson.testRemoveByNameAndSurname("HERO", "SURNAME HERO");
+        testPerson.testUpdatePerson("upd", "upd sur","upd descr","HERO", "SURNAME HERO");
+        testPerson.testRemoveByNameAndSurname("upd", "upd sur");
 
     }
     @Test
@@ -114,11 +118,12 @@ public class TestAll extends Assert {
     }
     @Test
     public void testCommentOnArticle(){
+        testComArt.testUpdateComment("UPD contetnt", new Timestamp(System.currentTimeMillis()),4);
        List<CommentOnArticle> list = (List<CommentOnArticle>)testComArt.serv.findAll();
-       Article article = list.get(list.size()-1).getArticle();
-       Human author = list.get(list.size()-1).getAuthor();
-  testComArt.testFindByArticle(article,1);
-      testComArt.testFindByAuthor(author,1);
+       Article article = list.get(list.size()-2).getArticle();
+       Human author = list.get(list.size()-2).getAuthor();
+       testComArt.testFindByArticle(article,1);
+     testComArt.testFindByAuthor(author,1);
       testComArt.testRemoveByArticle(article);
       testComArt.testRemoveByAuthor(author);
 
@@ -133,9 +138,10 @@ public class TestAll extends Assert {
     }
     @Test
     public void testCommentOnNews(){
+        testComNews.testUpdateComment("UPD contetnt", new Timestamp(System.currentTimeMillis()),1);
         List<CommentOnNews> list = (List<CommentOnNews>)testComNews.serv.findAll();
-       News news = list.get(list.size()-1).getNews();
-        Human author = list.get(list.size()-1).getAuthor();
+       News news = list.get(list.size()-2).getNews();
+        Human author = list.get(list.size()-2).getAuthor();
       testComNews.testFindByNews(news,1);
       testComNews.testFindByAuthor(author,1);
         testComNews.testRemoveByNews(news);
@@ -152,9 +158,10 @@ public class TestAll extends Assert {
     }
     @Test
     public void testCommentOnSeries(){
+        testComSer.testUpdateComment("UPD contetnt", new Timestamp(System.currentTimeMillis()),1);
         List<CommentOnSeries> list = (List<CommentOnSeries>)testComSer.serv.findAll();
-        Series series = list.get(list.size()-1).getSeries();
-        Human author = list.get(list.size()-1).getAuthor();
+        Series series = list.get(list.size()-2).getSeries();
+        Human author = list.get(list.size()-2).getAuthor();
         testComSer.testFindBySeries(series,1);
         testComSer.testFindByAuthor(author,1);
         testComSer.testRemoveByNews(series);
@@ -170,9 +177,11 @@ public class TestAll extends Assert {
     }
     @Test
     public void testCommentOnTVSeries(){
+      testComTV.testUpdateComment("UPD contetnt", new Timestamp(System.currentTimeMillis()),1);
+
         List<CommentOnTvSeries> list = (List<CommentOnTvSeries>)testComTV.serv.findAll();
-        Human author = list.get(list.size()-1).getAuthor();
-        testComTV.testFindByAuthor(author,1);
+        Human author = list.get(0).getAuthor();
+      testComTV.testFindByAuthor(author,1);
         testComTV.testRemoveByAuthor(author);
 
         CommentOnTvSeries com1 = new CommentOnTvSeries();

@@ -13,7 +13,6 @@ import java.util.List;
  * Created by Богдана on 13.11.2017.
  */
 @Service
-
 public class CommentOnSeriesServiceImpl implements CommentOnSeriesService {
     @Autowired
     private CommentSeriesRepo repo;

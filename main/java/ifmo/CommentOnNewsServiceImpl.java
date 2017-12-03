@@ -28,5 +28,4 @@ public class CommentOnNewsServiceImpl  implements CommentOnNewsService{
   public   void delete(CommentOnNews comment){repo.delete(comment);}
    public void save(CommentOnNews comment){repo.save(comment);}
     public void updateComment(String content, Timestamp stamp, int id){repo.updateComment(content, stamp,id);}
-
 }

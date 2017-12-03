@@ -15,13 +15,13 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsRepo repo;
- public    List<News> findByName(String name){return repo.findByName(name);}
+    public    List<News> findByName(String name){return repo.findByName(name);}
     public List<News> findByDateAddIsAfter(Timestamp date){return repo.findByDateAddIsAfter(date);}
     public List<News> findByDateAddBefore(Timestamp date){return repo.findByDateAddBefore(date);}
     public void removeIfDateIsBefore(Timestamp date){repo.removeIfDateIsBefore(date);}
     public void removeByName(String name){repo.removeByName(name);}
-   public Iterable<News> findAll(){return repo.findAll();}
+    public Iterable<News> findAll(){return repo.findAll();}
     public News findOne(int id){return repo.findOne(id);}
-  public   void delete(News news){repo.delete(news);}
+    public   void delete(News news){repo.delete(news);}
     public void save(News news){repo.save(news);}
 }

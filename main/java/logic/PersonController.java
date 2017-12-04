@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class PersonController {
     @Autowired
-   private static PersonService service;
+   private  PersonService service;
     @RequestMapping("/pers/getbyname")
     public List<Person> findByNameAndSurname(@RequestParam(value = "name") String name, @RequestParam(value = "surname")String surname){
         return service.findByNameAndSurname(name, surname);
@@ -32,7 +32,7 @@ public class PersonController {
     public void update(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname, @RequestParam(value = "descr") String descr,@RequestParam(value = "prevname") String prevNname, @RequestParam(value = "prevsur") String prevSurname){
         service.updatePerson(name, surname, descr, prevNname, prevSurname);
     }
-    @RequestMapping("/pers/renbyname")
+    @RequestMapping("/pers/rembyname")
     public void removeByNameAndSurname(@RequestParam(value = "name") String name, @RequestParam(value = "surname") String surname){
         service.removeByNameAndSirname(name, surname);
     }

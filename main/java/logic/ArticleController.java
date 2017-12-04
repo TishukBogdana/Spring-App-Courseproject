@@ -15,9 +15,9 @@ import java.util.List;
 @RestController
 public class ArticleController {
     @Autowired
-  private static  ArticleService service ;
+  private   ArticleService service ;
     @Autowired
-  private static HumanService hService;
+  private HumanService hService;
   @RequestMapping("/articles/getlast")
     public List<Article> getForPage(){
       Timestamp defTime = new Timestamp(System.currentTimeMillis()-864000000);
@@ -27,13 +27,13 @@ public class ArticleController {
     public List<Article> getByName(@RequestParam(value = "name") String name){
         return  service.findByName(name);
     }
-    @RequestMapping("/articles/getAuth")
-    public List<Article> getByAuthor(@RequestParam(value="login")String login){
+    @RequestMapping("/articles/getauth")
+    public List<Article> getByAuthor(@RequestParam(value="author")String login){
       Human author = hService.findByLogin(login).get(0);
       return service.findByAuthor(author);
     }
  @RequestMapping("/articles/getnameandauth")
-  public List<Article> getByNameAndAuthor(@RequestParam(value = "name")String name, @RequestParam(value = "login") String login){
+  public List<Article> getByNameAndAuthor(@RequestParam(value = "name")String name, @RequestParam(value = "author") String login){
      Human author = hService.findByLogin(login). get(0);
       return service.findByNameAndAuthor(name, author);
  }
@@ -42,17 +42,17 @@ public class ArticleController {
   service.removeByName(name);
   }
   @RequestMapping("/articles/remByAuthor")
-  public void removeByAuthor(@RequestParam(value = "login") String login){
+  public void removeByAuthor(@RequestParam(value = "author") String login){
     Human author = hService.findByLogin(login).get(0);
     service.removeByAuthor( author);
   }
   @RequestMapping("/article/update")
-  public void update(@RequestParam(value ="prevname") String prevname, @RequestParam(value  ="login" ) String login, @RequestParam(value = "name")String name, @RequestParam(value = "body")String body){
+  public void update(@RequestParam(value ="prevname") String prevname, @RequestParam(value  ="author" ) String login, @RequestParam(value = "name")String name, @RequestParam(value = "body")String body){
     Human author = hService.findByLogin(login).get(0);
     service.updateByNameAndBody(prevname,author,name, body, new Timestamp(System.currentTimeMillis()));
   }
   @RequestMapping("/article/add")
- public void addArticle(@RequestParam(value = "login") String login, @RequestParam (value = "name") String name, @RequestParam(value = "bogy") String body ){
+ public void addArticle(@RequestParam(value = "author") String login, @RequestParam (value = "name") String name, @RequestParam(value = "bogy") String body ){
       Human human = hService.findByLogin(login).get(0);
       Article article = new Article();
       article.setAuthor(human);

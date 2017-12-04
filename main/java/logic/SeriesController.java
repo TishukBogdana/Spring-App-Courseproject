@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class SeriesController {
     @Autowired
-    private static SeriesService service;
+    private  SeriesService service;
     @RequestMapping("/series/upd")
     public void updateSeries(@RequestParam(value = "name") String name, @RequestParam(value = "plot") String plot, @RequestParam(value = "prevname") String prevname){
         service.updateSeries(name,plot,prevname);

@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 public class NewsController {
     @Autowired
-    private static NewsService service ;
+    private NewsService service ;
     @RequestMapping("/news/add")
     public  void addNews(@RequestParam(value = "name") String name, @RequestParam(value = "body") String body){
         News news = new News();
@@ -39,7 +39,7 @@ public class NewsController {
     public void removeByName(@RequestParam(value = "name") String name){
         service.removeByName(name);
     }
-    //delete!
+    //todo fix delete!
     @RequestMapping("/news/findfresh")
     public List<News> findFresh(Timestamp stamp){
         return service.findByDateAddIsAfter(stamp);

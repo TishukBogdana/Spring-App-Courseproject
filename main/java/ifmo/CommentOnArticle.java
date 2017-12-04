@@ -2,6 +2,7 @@ package ifmo;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * Created by Богдана on 11.11.2017.
@@ -15,6 +16,7 @@ public class CommentOnArticle {
     private Article article;
     private CommentOnArticle onComment;
     private Human author;
+    Set<CommentOnArticle> comments;
     public CommentOnArticle(){}
     public CommentOnArticle(int id,String content, Timestamp dateAdd, Article article, CommentOnArticle onComment,Human author){
         this.content = content;
@@ -101,4 +103,12 @@ public class CommentOnArticle {
     @JoinColumn (name = "author", referencedColumnName = "id_human", nullable = false)
     public Human getAuthor(){return author;};
     public  void setAuthor(Human author){this.author =  author;}
+   /* @OneToMany(mappedBy = "on_comment", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
+    public Set<CommentOnArticle>  getComments(){
+        return comments;
+    }
+    public void  setComments(Set<CommentOnArticle> comments){
+        this.comments = comments;
+    }*/
+   //todo fix One_to_many in all comments
 }

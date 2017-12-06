@@ -1,9 +1,12 @@
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import ifmo.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import ru.ifmo.cs.domain.CommentOnNews;
+import ru.ifmo.cs.servimplementations.CommentOnNewsServiceImpl;
+import ru.ifmo.cs.domain.Human;
+import ru.ifmo.cs.domain.News;
 
 import java.sql.Timestamp;
 

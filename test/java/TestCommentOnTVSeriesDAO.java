@@ -1,6 +1,6 @@
-import ifmo.CommentOnTVSeriesImpl;
-import ifmo.CommentOnTvSeries;
-import ifmo.Human;
+import ru.ifmo.cs.servimplementations.CommentOnTVSeriesImpl;
+import ru.ifmo.cs.domain.CommentOnTvSeries;
+import ru.ifmo.cs.domain.Human;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

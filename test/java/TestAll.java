@@ -1,10 +1,11 @@
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import ifmo.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.ifmo.cs.config.DataConfig;
+import ru.ifmo.cs.domain.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -80,8 +81,7 @@ public class TestAll extends Assert {
         testSer.testFindByName("upd seria",1);
         testSer.testRemoveByName("upd seria");
         Series series = new Series();
-        series.setName("SERIA");
-        series.setPlot("something about");
+
         testSer.testSave(series);
         testSer.testUpdateSeries("upd seria", "upd plot", "SERIA");
     }

@@ -1,8 +1,12 @@
-import ifmo.*;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import ru.ifmo.cs.domain.CommentOnSeries;
+import ru.ifmo.cs.servimplementations.CommentOnSeriesServiceImpl;
+import ru.ifmo.cs.domain.Human;
+import ru.ifmo.cs.domain.Series;
 
 import java.sql.Timestamp;
 

@@ -1,5 +1,5 @@
-import ifmo.Person;
-import ifmo.PersonServiceImpl;
+import ru.ifmo.cs.domain.Person;
+import ru.ifmo.cs.servimplementations.PersonServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

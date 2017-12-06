@@ -1,5 +1,5 @@
-import ifmo.Series;
-import ifmo.SeriesServiceImpl;
+import ru.ifmo.cs.domain.Series;
+import ru.ifmo.cs.servimplementations.SeriesServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class TestSeriesDAO extends Assert {
     @Test
     public void testSave(Series series){
         serv.save(series);
-       series =serv.findOne(series.getIdSeries());
+
        assertNotNull(series);
     }
     @Test

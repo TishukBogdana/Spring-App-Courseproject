@@ -1,13 +1,10 @@
-import ifmo.Article;
-import ifmo.ArticleServiceImpl;
-import ifmo.DataConfig;
-import ifmo.Human;
+import ru.ifmo.cs.domain.Article;
+import ru.ifmo.cs.servimplementations.ArticleServiceImpl;
+import ru.ifmo.cs.domain.Human;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import java.sql.Timestamp;
 import java.util.List;

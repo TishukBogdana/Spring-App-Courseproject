@@ -1,7 +1,7 @@
-import ifmo.Article;
-import ifmo.CommentOnArticle;
-import ifmo.CommentOnArticleServiceImpl;
-import ifmo.Human;
+import ru.ifmo.cs.domain.Article;
+import ru.ifmo.cs.domain.CommentOnArticle;
+import ru.ifmo.cs.servimplementations.CommentOnArticleServiceImpl;
+import ru.ifmo.cs.domain.Human;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

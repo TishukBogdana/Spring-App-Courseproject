@@ -1,11 +1,9 @@
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import ifmo.News;
-import ifmo.NewsServiceImpl;
+import ru.ifmo.cs.domain.News;
+import ru.ifmo.cs.servimplementations.NewsServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import sun.applet.AppletListener;
 
 import java.sql.Timestamp;
 

@@ -1,0 +1,28 @@
+
+security:
+  oauth2:
+    client:
+      clientId: amAdmin
+      clientSecret: 01234567
+      accessTokenUri: http://localhost:8070/AM-eval-5.5.1/oauth2/access_token
+      userAuthorizationUri: http://localhost:8070/AM-eval-5.5.1/oauth2/authorize
+      tokenName: access_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: http://localhost:8070/AM-eval-5.5.1/oauth2/tokeninfo
+
+#security:
+ # oauth2:
+  #  client:
+   #   clientId: 6241804
+    #  clientSecret: owB0S6TftYKj1ShsWGiW
+     # accessTokenUri: https://oauth.vk.com/access_token
+      #userAuthorizationUri: https://oauth.vk.com/authorize
+     # tokenName: code
+     # authenticationScheme: query
+     # clientAuthenticationScheme: form
+     # grant-type: authorization_code
+    # resource:
+      # userInfoUri: https://api.vk.com/method/users.get
+#2/QQBb/pLcYGeoyNtSquqTwgBMBQCHod

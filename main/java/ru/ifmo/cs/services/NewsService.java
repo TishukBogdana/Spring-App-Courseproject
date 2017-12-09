@@ -9,12 +9,12 @@ import java.util.List;
  * Created by Богдана on 13.11.2017.
  */
 public interface NewsService {
-    List<News> findByName(String name);
-    List<News> findByDateAddIsAfter(Timestamp date);
-    List<News> findByDateAddBefore(Timestamp date);
+    List<News> findByName(String name, boolean mod);
+    List<News> findByDateAddIsAfter(Timestamp date, boolean mod);
+    List<News> findByDateAddBefore(Timestamp date, boolean mod);
     List<News> findByModerated(boolean moderated);
     void removeIfDateIsBefore(Timestamp date);
-    void removeByName(String name);
+    void remove(int id);
     Iterable<News> findAll();
     News findOne(int id);
     void delete(News news);

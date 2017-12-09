@@ -17,16 +17,13 @@ import java.util.List;
  */
 
 public interface CommentSeriesRepo extends JpaRepository<CommentOnSeries, Integer> {
-    List<CommentOnSeries> findByAuthor(Human author);
     List<CommentOnSeries> findBySeries(Series series);
     @Modifying
     @Transactional
     @Query("delete from CommentOnSeries  com where com.series =?1")
     void removeBySeries(Series series);
-    @Modifying
-    @Transactional
-    @Query("delete from CommentOnArticle  com where com.author =?1")
-     void removeByAuthor(Human author);
+
+
     @Modifying
     @Transactional
     @Query("update CommentOnSeries set content =:content, dateAdd=:date where id=:id")

@@ -13,11 +13,7 @@ public class Human {
     private String password;
     private String surname;
     private String login;
-   private Set<Article> articles;
-    private Set<CommentOnNews> commentsN;
-    private Set<CommentOnSeries> commentsSer;
-    private Set<CommentOnArticle> commentsAr;
-    private Set<CommentOnTvSeries> commentsTV;
+
     public Human(int id, String name, String sir, String login, String passw){
         this.name=name;
         this.surname=sir;
@@ -103,19 +99,5 @@ public class Human {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         return result;
     }
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<Article> getArticles(){return articles;}
-    public void setArticles(Set<Article> articles){this.articles = articles;}
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnNews> getCommentsN(){return commentsN;}
-    public void setCommentsN(Set<CommentOnNews> commentsN){this.commentsN =  commentsN;}
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnSeries> getCommentsSer(){return commentsSer;}
-    public void setCommentsSer(Set<CommentOnSeries> commentsSer){this.commentsSer = commentsSer;}
-    @OneToMany (mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnArticle> getCommentsAr(){return  commentsAr;}
-    public void setCommentsAr(Set<CommentOnArticle> commentsAr){this.commentsAr = commentsAr;}
-    @OneToMany (mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnTvSeries> getCommentsTV(){return  commentsTV;}
-    public void setCommentsTV(Set<CommentOnTvSeries> commentsTV){this.commentsTV = commentsTV;}
+
 }

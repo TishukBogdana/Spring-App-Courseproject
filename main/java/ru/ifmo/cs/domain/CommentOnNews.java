@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 07.12.2017.
  */
 @Entity
 @Table(name = "comment_on_news")
@@ -12,21 +12,9 @@ public class CommentOnNews {
     private int id;
     private String content;
     private Timestamp dateAdd;
-    private CommentOnNews onComment;
-    private Human author;
+
     private News news;
-    public CommentOnNews(){}
-    public CommentOnNews(int id, String content, Timestamp dateAdd, News news, CommentOnNews onComment,Human author){
-        this.content = content;
-        this.dateAdd =dateAdd;
-        this.news = news;
-        this.onComment=onComment;
-        this.author =author;
-        this.id =id;
-    }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "cnews")
-    @SequenceGenerator(name="cnews", sequenceName = "comment_on_news_id_seq")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -77,22 +65,13 @@ public class CommentOnNews {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-
     @ManyToOne
-    @JoinColumn(name = "on_comment", referencedColumnName = "id")
-    public CommentOnNews getOnComment() {
-        return onComment;
+    @JoinColumn(name = "news", referencedColumnName = "id_news" , nullable = false)
+    public News getNews(){
+        return news;
+    }
+    public void setNews(News news){
+        this.news = news;
     }
 
-    public void setOnComment(CommentOnNews onComment) {
-        this.onComment = onComment;
-    }
-    @ManyToOne
-    @JoinColumn (name = "author", referencedColumnName = "id_human", nullable = false)
-    public Human getAuthor(){return author;};
-    public  void setAuthor(Human author){this.author =  author;}
-    @ManyToOne
-    @JoinColumn(name = "news" , referencedColumnName = "id_news", nullable = false)
-    public News getNews(){return news;}
-    public void setNews(News news){this.news = news;}
 }

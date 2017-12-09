@@ -18,12 +18,12 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
 
     private NewsRepo repo;
-    public    List<News> findByName(String name){return repo.findByName(name);}
-    public List<News> findByDateAddIsAfter(Timestamp date){return repo.findByDateAddIsAfter(date);}
-    public List<News> findByDateAddBefore(Timestamp date){return repo.findByDateAddBefore(date);}
+    public    List<News> findByName(String name, boolean mod){return repo.findByNameAndModerated(name,mod);}
+    public List<News> findByDateAddIsAfter(Timestamp date, boolean mod){return repo.findByDateAddIsAfterAndModerated(date, mod);}
+    public List<News> findByDateAddBefore(Timestamp date, boolean mod){return repo.findByDateAddBeforeAndModerated(date, mod);}
     public List<News> findByModerated(boolean moderated){return repo.findByModerated(moderated);}
     public void removeIfDateIsBefore(Timestamp date){repo.removeIfDateIsBefore(date);}
-    public void removeByName(String name){repo.removeByName(name);}
+    public void remove(int id){repo.remove(id);}
     public Iterable<News> findAll(){return repo.findAll();}
     public News findOne(int id){return repo.findOne(id);}
     public   void delete(News news){repo.delete(news);}

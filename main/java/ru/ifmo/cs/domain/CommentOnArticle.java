@@ -1,11 +1,12 @@
 package ru.ifmo.cs.domain;
 
+import org.springframework.data.jpa.repository.Modifying;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 07.12.2017.
  */
 @Entity
 @Table(name = "comment_on_article")
@@ -13,22 +14,9 @@ public class CommentOnArticle {
     private int id;
     private String content;
     private Timestamp dateAdd;
-    private Article article;
-    private CommentOnArticle onComment;
-    private Human author;
-    Set<CommentOnArticle> comments;
-    public CommentOnArticle(){}
-    public CommentOnArticle(int id,String content, Timestamp dateAdd, Article article, CommentOnArticle onComment,Human author){
-        this.content = content;
-        this.dateAdd =dateAdd;
-        this.article = article;
-        this.onComment=onComment;
-        this.author =author;
-        this.id=id;
-    }
+
+   private Article article;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "cart")
-    @SequenceGenerator(name = "cart", sequenceName = "comment_on_article_id_seq")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -79,36 +67,14 @@ public class CommentOnArticle {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-
     @ManyToOne
-    @JoinColumn(name = "article", referencedColumnName = "id_article", nullable = false)
-    public Article getArticle() {
+    @JoinColumn(name = "article", referencedColumnName = "id_article" , nullable = false)
+    public Article getArticle(){
         return article;
     }
-
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticle(Article article){
+        this.article=article;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "on_comment", referencedColumnName = "id")
-    public CommentOnArticle getOnComment() {
-        return onComment;
-    }
 
-    public void setOnComment(CommentOnArticle onComment) {
-        this.onComment = onComment;
-    }
-    @ManyToOne
-    @JoinColumn (name = "author", referencedColumnName = "id_human", nullable = false)
-    public Human getAuthor(){return author;};
-    public  void setAuthor(Human author){this.author =  author;}
-   /* @OneToMany(mappedBy = "on_comment", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnArticle>  getComments(){
-        return comments;
-    }
-    public void  setComments(Set<CommentOnArticle> comments){
-        this.comments = comments;
-    }*/
-   //todo fix One_to_many in all comments
 }

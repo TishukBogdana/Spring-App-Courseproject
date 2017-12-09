@@ -8,6 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 import ru.ifmo.cs.config.DataConfig;
+import ru.ifmo.cs.config.SecurityConfig;
 
 /**
  * Created by Богдана on 12.11.2017.
@@ -26,7 +27,7 @@ public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(
-                DataConfig.class
+                DataConfig.class, SecurityConfig.class
         );
     }
 }

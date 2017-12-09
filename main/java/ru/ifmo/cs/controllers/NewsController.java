@@ -28,28 +28,32 @@ public class NewsController {
     }
     @RequestMapping("/news/getbyname")
     public List<News> findByName(@RequestParam(value = "name") String name){
-        return service.findByName(name);
+        return service.findByName(name,true);
     }
     @RequestMapping("/news/remold")
     public void removeOld(Timestamp stamp){
         service.removeIfDateIsBefore(stamp);
     }
-    @RequestMapping("/news/rembyname")
-    public void removeByName(@RequestParam(value = "name") String name){
-        service.removeByName(name);
+    @RequestMapping("/news/rem")
+    public void remove(@RequestParam(value = "id") int id){
+        service.remove(id);
     }
     //todo fix delete!
     @RequestMapping("/news/findfresh")
     public List<News> findFresh(Timestamp stamp){
-        return service.findByDateAddIsAfter(stamp);
+        return service.findByDateAddIsAfter(stamp,true);
     }
     @RequestMapping("/news/findold")
     public List<News> findOld(Timestamp stamp){
-        return service.findByDateAddBefore(stamp);
+        return service.findByDateAddBefore(stamp, true);
     }
     @RequestMapping("/news/findall")
-    public Iterable<News> findAll(){
-        return service.findAll();
+    public List<News> findAll(){
+        return service.findByModerated(true);
+    }
+    @RequestMapping("/news/findunmod")
+    public List<News> findUnmod(){
+        return service.findByModerated(false);
     }
     @RequestMapping("/news/findOne")
     public News findOne(int id){

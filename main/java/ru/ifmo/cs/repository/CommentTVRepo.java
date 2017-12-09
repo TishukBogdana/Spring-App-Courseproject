@@ -17,12 +17,8 @@ import java.util.List;
 
 public interface CommentTVRepo extends JpaRepository<CommentOnTvSeries, Integer> {
 
-    List<CommentOnTvSeries> findByAuthor(Human author);
 
-    @Modifying
-    @Transactional
-    @Query("delete from CommentOnTvSeries  com where com.author =?1")
-   void removeByAuthor(Human author);
+
     @Modifying
     @Transactional
     @Query("update CommentOnTvSeries set content =:content, dateAdd=:date where id=:id")

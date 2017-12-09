@@ -1,5 +1,7 @@
 package ru.ifmo.cs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -7,6 +9,7 @@ import java.util.Set;
 /**
  * Created by Богдана on 11.11.2017.
  */
+
 @Entity
 @Table(name = "article")
 public class Article {
@@ -14,17 +17,15 @@ public class Article {
     private String body;
     private String name;
     private Timestamp dateAdd;
-    private Human author;
     private  boolean moderated;
     private Set<CommentOnArticle> comments;
 
     public Article(){}
 
-    public Article(int id,String name, String body, Timestamp dateAdd,Human author, boolean moderated){
+    public Article(int id,String name, String body, Timestamp dateAdd, boolean moderated){
         this.name = name;
         this.body = body;
         this.dateAdd=dateAdd;
-        this.author =author;
         this.idArticle=id;
         this.moderated = moderated;
     }
@@ -103,11 +104,9 @@ public class Article {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-    @ManyToOne
-    @JoinColumn(name ="author", referencedColumnName = "id_human", nullable = false)
-    public Human getAuthor(){return author;}
-    public void setAuthor(Human author){this.author = author;}
+
     @OneToMany (mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
     public Set<CommentOnArticle> getComments(){return  comments;}
     public void setComments(Set<CommentOnArticle> comments){this.comments = comments;}
+
 }

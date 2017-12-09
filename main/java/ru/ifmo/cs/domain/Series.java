@@ -1,7 +1,6 @@
 package ru.ifmo.cs.domain;
 
 import lombok.*;
-import ru.ifmo.cs.domain.CommentOnSeries;
 
 import javax.persistence.*;
 import java.util.Set;

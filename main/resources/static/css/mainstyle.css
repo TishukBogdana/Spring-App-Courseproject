@@ -1,0 +1,72 @@
+.header{
+    background-color: #5e5e5e;
+}
+
+.header h1{
+  color: #761c19;
+    font-weight: 900;
+    font-size: 30pt;
+
+}
+input{margin-top: 5px;}
+#art, #news, #ser{
+   margin-bottom: 10px;
+}
+#ser{    margin-left: 3%;
+}
+#caution{
+   margin: -1%;
+    height: 7%;
+    background-color: #FAEBD7;
+    text-align: center;
+}
+#caution h1{
+    color: #761c19;
+}
+.descr{
+    height: 7%;
+    background-color: #8c8c8c;
+    text-align: center;
+}
+.descr h1{
+    color: #761c19;
+    font-weight: 700;
+}
+input[type="text"],input[type="password"],select{
+    border-radius: 5px;
+}
+@media screen and (min-width: 1205px ) {
+    #reg{margin-left: 80% ;
+        margin-top: 5px;}
+    form{margin-left: 80%;  }
+    .header h1{ margin-left: 3%;
+        margin-top: -3%;}
+}
+@media screen and ( max-width: 1205px) {
+    #reg{margin-left: 61% ;
+        margin-top: 5px;}
+    form{margin-left: 61%;  }
+    input[type="text"],input[type="password"]{
+        width: 300px;
+    }
+    .header h1{ margin-left: 3%;
+        margin-top: -7%;}
+}
+ @media screen and (max-device-width: 722px) {
+     #reg{margin-left: 5% ;
+         margin-top: 5px;}
+     form{margin-left: 5%;  }
+     input[type="text"],input[type="password"]{
+         width: 80%;
+         height: 41px;
+     }
+     .header h1{ margin-left: 3%;
+         margin-top: 5%;
+    }
+     #ser, #art, #news{
+         width: 30%;
+     }
+     .header{
+         height: 41%;
+     }
+ }

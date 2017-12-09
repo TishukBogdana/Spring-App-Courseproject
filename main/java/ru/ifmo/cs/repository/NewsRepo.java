@@ -15,9 +15,9 @@ import java.util.List;
 
 public interface NewsRepo extends JpaRepository<News, Integer> {
 
-    List<News> findByName(String name);
-    List<News> findByDateAddIsAfter(Timestamp date);
-    List<News> findByDateAddBefore(Timestamp date);
+    List<News> findByNameAndModerated(String name, boolean mod);
+    List<News> findByDateAddIsAfterAndModerated(Timestamp date, boolean mod);
+    List<News> findByDateAddBeforeAndModerated(Timestamp date, boolean mod);
     List<News> findByModerated(boolean moderated);
 
     @Modifying
@@ -26,6 +26,6 @@ public interface NewsRepo extends JpaRepository<News, Integer> {
     void removeIfDateIsBefore(Timestamp date);
     @Modifying
     @Transactional
-    @Query("delete from News n where n.name =?1 ")
-    void removeByName(String name);
+    @Query("delete from News n where n.idNews =?1 ")
+    void remove(int id);
 }

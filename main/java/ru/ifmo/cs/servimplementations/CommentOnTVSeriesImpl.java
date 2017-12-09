@@ -21,8 +21,7 @@ public class CommentOnTVSeriesImpl implements CommentOnTVSeriesService {
 
     private CommentTVRepo repo;
 
-    public List<CommentOnTvSeries> findByAuthor(Human author){return repo.findByAuthor(author);}
-    public void removeByAuthor(Human author){repo.removeByAuthor(author);}
+
  public    Iterable<CommentOnTvSeries> findAll(){return repo.findAll();}
    public CommentOnTvSeries findOne(int id){return repo.findOne(id);}
   public   void delete(CommentOnTvSeries comment){repo.delete(comment);}

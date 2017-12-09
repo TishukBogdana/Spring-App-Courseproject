@@ -16,23 +16,18 @@ import java.util.List;
  */
 
 public interface ArticleRepo extends JpaRepository<Article, Integer> {
-    List<Article> findByName(String name);
-    List<Article> findByAuthor(Human author);
-    List<Article> findByNameAndAuthor(String name, Human author);
-    List<Article> findByDateAddIsAfter(Timestamp date);
+    List<Article> findByNameAndModerated(String name, boolean mod);
+    List<Article> findByDateAddIsAfterAndModerated(Timestamp date,boolean mod);
     List<Article> findByDateAddIsBefore(Timestamp date);
     List<Article> findByModerated(boolean moderated);
     @Modifying
     @Transactional
-    @Query(value = "delete from Article a where a.name=?1")
-    void removeByName(String name);
-    @Modifying
-    @Transactional
-    @Query(value = "delete from Article a where a.author=?1")
-    void removeByAuthor(Human author);
+    @Query(value = "delete from Article a where a.idArticle=?1")
+    void remove(int id);
+
    @Modifying
     @Transactional
-    @Query("UPDATE Article  SET  name = :name, body=:body, dateAdd=:timestamp where name= :prevname and author =:author")
-    void updateNameAndBody(@Param("prevname") String prev,@Param("author") Human author, @Param("name") String name, @Param("body") String body,@Param("timestamp") Timestamp timestamp);
+    @Query("UPDATE Article  SET  name = :name, body=:body, dateAdd=:timestamp where idArticle= :id")
+    void update(@Param("id") int id, @Param("name") String name, @Param("body") String body,@Param("timestamp") Timestamp timestamp);
 }
 

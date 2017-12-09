@@ -22,10 +22,9 @@ import java.util.List;
 public class CommentOnSeriesServiceImpl implements CommentOnSeriesService {
     @Autowired
     private CommentSeriesRepo repo;
-    public List<CommentOnSeries> findByAuthor(Human author){return repo.findByAuthor(author);}
+
     public List<CommentOnSeries> findBySeries(Series series){return repo.findBySeries(series);}
     public void removeBySeries(Series series){repo.removeBySeries(series);}
-    public void removeByAuthor(Human author){repo.removeByAuthor(author);}
   public   Iterable<CommentOnSeries> findAll(){return repo.findAll();}
     public CommentOnSeries findOne(int id){return repo.findOne(id);}
     public void delete(CommentOnSeries comment){repo.delete(comment);}

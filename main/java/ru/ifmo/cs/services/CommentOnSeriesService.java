@@ -17,8 +17,7 @@ public interface CommentOnSeriesService  {
 
     List<CommentOnSeries> findBySeries(Series series);
     void removeBySeries(Series series);
-    List<CommentOnSeries> findByAuthor(Human author);
-    void removeByAuthor(Human author);
+
     Iterable<CommentOnSeries> findAll();
     CommentOnSeries findOne(int id);
     void delete(CommentOnSeries comment);

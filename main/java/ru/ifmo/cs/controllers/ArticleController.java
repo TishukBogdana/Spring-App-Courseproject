@@ -2,9 +2,9 @@ package ru.ifmo.cs.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.ifmo.cs.domain.Article;
 import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.domain.News;
@@ -22,48 +22,31 @@ import java.util.List;
 public class ArticleController {
     @Autowired
   private ArticleService service ;
-    @Autowired
-  private HumanService hService;
+
     @Autowired
     private NewsService nService;
-  @RequestMapping("/articles/getlast")
+  @GetMapping("/articles/getlast")
     public List<Article> getForPage(){
       Timestamp defTime = new Timestamp(System.currentTimeMillis()-864000000);
-        return service.findByDateAddIsAfter(defTime);
+        return service.findByDateAddIsAfter(defTime,true);
     }
-    @RequestMapping("/articles/getname")
+    @GetMapping("/articles/getname")
     public List<Article> getByName(@RequestParam(value = "name") String name){
-        return  service.findByName(name);
+        return  service.findByName(name,true);
     }
-    @RequestMapping("/articles/getauth")
-    public List<Article> getByAuthor(@RequestParam(value="author")String login){
-      Human author = hService.findByLogin(login).get(0);
-      return service.findByAuthor(author);
-    }
- @RequestMapping("/articles/getnameandauth")
-  public List<Article> getByNameAndAuthor(@RequestParam(value = "name")String name, @RequestParam(value = "author") String login){
-     Human author = hService.findByLogin(login). get(0);
-      return service.findByNameAndAuthor(name, author);
- }
- @RequestMapping("/articles/rembybame")
-  public void removeByName(@RequestParam(value = "name") String name){
-  service.removeByName(name);
+
+ @PostMapping("/articles/rembybame")
+  public void removeByName(@RequestParam(value = "id") int id){
+  service.remove(id);
   }
-  @RequestMapping("/articles/remByAuthor")
-  public void removeByAuthor(@RequestParam(value = "author") String login){
-    Human author = hService.findByLogin(login).get(0);
-    service.removeByAuthor( author);
-  }
+
   @RequestMapping("/article/update")
-  public void update(@RequestParam(value ="prevname") String prevname, @RequestParam(value  ="author" ) String login, @RequestParam(value = "name")String name, @RequestParam(value = "body")String body){
-    Human author = hService.findByLogin(login).get(0);
-    service.updateByNameAndBody(prevname,author,name, body, new Timestamp(System.currentTimeMillis()));
+  public void update(@RequestParam(value ="id") int id,  @RequestParam(value = "name")String name, @RequestParam(value = "body")String body){
+    service.update(id,name, body, new Timestamp(System.currentTimeMillis()));
   }
   @RequestMapping("/article/offer")
- public void addArticle(@RequestParam(value = "author") String login, @RequestParam (value = "name") String name, @RequestParam(value = "bogy") String body ){
-      Human human = hService.findByLogin(login).get(0);
+ public void addArticle( @RequestParam (value = "name") String name, @RequestParam(value = "bogy") String body ){
       Article article = new Article();
-      article.setAuthor(human);
       article.setName(name);
       article.setBody(body);
       article.setDateAdd(new Timestamp(System.currentTimeMillis()));
@@ -72,15 +55,19 @@ public class ArticleController {
       News news = new News();
       news.setDateAdd(new Timestamp(System.currentTimeMillis()));
       news.setName("New article added");
-      news.setBody(login+"has added  new article"+name);
+      news.setBody("new article"+name);
       nService.save(news);
   }
-  //delete!
+
     @RequestMapping("/article/findone")
     public  Article findOne(int id){
      return service.findOne(id);
     }
 
     @RequestMapping("/articles/all")
-    public Iterable<Article> findAll(){return  service.findAll();}
+    public ResponseEntity<List<Article>> findAll(){return new ResponseEntity<List<Article>>(service.findByModerated(true), HttpStatus.OK) ;}
+    @RequestMapping("/articles/unmod")
+    public List<Article> findUnmod(){
+        return service.findByModerated(false);
+    }
 }

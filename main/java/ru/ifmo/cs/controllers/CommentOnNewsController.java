@@ -23,29 +23,20 @@ import java.util.List;
 public class CommentOnNewsController {
     @Autowired
     private CommentOnNewsService service;
-    @Autowired
-    private HumanService hService;
+
     @Autowired
     private NewsService nService;
     @RequestMapping("/nwscom/getAll")
     public Iterable<CommentOnNews> findAll(){
         return service.findAll();
     }
-    @RequestMapping("/nwscon/getbyauth")
-    public List<CommentOnNews> findByAuthor(@RequestParam(value = "login") String login){
-        Human author  =  hService.findByLogin(login).get(0);
-        return service.findByAuthor(author);
-    }
+
     @RequestMapping("/nwscom/getbynews")
     public List<CommentOnNews> findByNews(@RequestParam(value = "news")int id){
        News news = nService.findOne(id);
         return service.findByNews(news);
     }
-    @RequestMapping("/nwscom/rembyauth")
-    public void removeByAuthor(@RequestParam(value = "author") String login){
-        Human author  =  hService.findByLogin(login).get(0);
-        service.removeByAuthor(author);
-    }
+
     @RequestMapping("/nwscom/rembynews")
     public void removeByNews(@RequestParam(value = "news")int id){
         News news = nService.findOne(id);
@@ -56,14 +47,10 @@ public class CommentOnNewsController {
         service.updateComment(content, new Timestamp(System.currentTimeMillis()), id);
     }
     @RequestMapping("/nwscom/add")
-    public void add( @RequestParam(value = "reply") int id_com, @RequestParam(value = "author") String login, @RequestParam(value = "news")int id_news, @RequestParam(value = "content") String content){
+    public void add(  @RequestParam(value = "news")int id_news, @RequestParam(value = "content") String content){
     CommentOnNews comment = new CommentOnNews();
-        Human author = hService.findByLogin(login).get(0);
         News news = nService.findOne(id_news);
-        CommentOnNews reply = service.findOne(id_com);
-        comment.setOnComment(reply);
         comment.setNews(news);
-        comment.setAuthor(author);
         comment.setContent(content);
         comment.setDateAdd(new Timestamp(System.currentTimeMillis()));
         service.save(comment);

@@ -18,8 +18,7 @@ public interface CommentOnNewsService  {
 
     void removeByNews(News news);
 
-    List<CommentOnNews> findByAuthor(Human author);
-    void removeByAuthor(Human author);
+
     Iterable<CommentOnNews> findAll();
     CommentOnNews findOne(int id);
     void delete(CommentOnNews comment);

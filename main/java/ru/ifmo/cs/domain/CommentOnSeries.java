@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 07.12.2017.
  */
 @Entity
 @Table(name = "comment_on_series")
@@ -12,21 +12,8 @@ public class CommentOnSeries {
     private int id;
     private String content;
     private Timestamp dateAdd;
-    private CommentOnSeries commentOnSeriesByOnComment;
-    private Human author ;
     private Series series;
-    public CommentOnSeries(){}
-    public CommentOnSeries(int id, String content, Timestamp dateAdd, Series series, CommentOnSeries onComment,Human author){
-        this.content = content;
-        this.dateAdd =dateAdd;
-        this.series = series;
-        this.commentOnSeriesByOnComment=onComment;
-        this.author =author;
-        this.id =id;
-    }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="cser")
-    @SequenceGenerator(name ="cser", sequenceName = "comment_on_series_id_seq")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -77,22 +64,13 @@ public class CommentOnSeries {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-
     @ManyToOne
-    @JoinColumn(name = "on_comment", referencedColumnName = "id")
-    public CommentOnSeries getCommentOnSeriesByOnComment() {
-        return commentOnSeriesByOnComment;
+    @JoinColumn(name = "series", referencedColumnName = "id_series" , nullable = false)
+    public Series getSeries(){
+        return series;
+    }
+    public void setSeries(Series series){
+        this.series = series;
     }
 
-    public void setCommentOnSeriesByOnComment(CommentOnSeries commentOnSeriesByOnComment) {
-        this.commentOnSeriesByOnComment = commentOnSeriesByOnComment;
-    }
-    @ManyToOne
-    @JoinColumn (name = "author", referencedColumnName = "id_human", nullable = false)
-    public Human getAuthor(){return author;};
-    public  void setAuthor(Human author){this.author =  author;}
-    @ManyToOne
-    @JoinColumn(name ="series", referencedColumnName = "id_series", nullable = false)
-    public Series getSeries(){return series;}
-    public void setSeries(Series series){this.series =  series;}
 }

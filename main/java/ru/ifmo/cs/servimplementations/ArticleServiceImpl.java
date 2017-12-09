@@ -22,10 +22,10 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleRepo repo;
-    public List<Article> findByName(String name){return repo.findByName(name);}
-    public List<Article> findByAuthor(Human author){return repo.findByAuthor(author);}
-    public List<Article> findByNameAndAuthor(String name, Human author){return repo.findByNameAndAuthor(name, author);}
-    public List<Article> findByDateAddIsAfter(Timestamp date){return repo.findByDateAddIsAfter(date);}
+    public List<Article> findByName(String name, boolean mod){return repo.findByNameAndModerated(name,mod);}
+
+
+    public List<Article> findByDateAddIsAfter(Timestamp date,boolean mod){return repo.findByDateAddIsAfterAndModerated(date,mod);}
     public List<Article> findByDateAddIsBefore(Timestamp date){return repo.findByDateAddIsBefore(date);}
     public List<Article> findByModerated(boolean moderated){return repo.findByModerated(moderated);}
 
@@ -33,7 +33,6 @@ public class ArticleServiceImpl implements ArticleService {
    public void delete(Article article){repo.delete(article);}
     public void save(Article article){repo.save(article);}
     public Article findOne(int id){return repo.findOne(id);}
-   public void removeByName(String name){ repo.removeByName(name);}
-    public void removeByAuthor(Human author){repo.removeByAuthor(author);}
-  public   void updateByNameAndBody(String prev , Human author, String name, String body, Timestamp stamp){repo.updateNameAndBody(prev, author, name, body,stamp);}
+   public void remove(int id){ repo.remove(id);}
+  public   void update(int id ,String name, String body, Timestamp stamp){repo.update(id, name, body,stamp);}
 }

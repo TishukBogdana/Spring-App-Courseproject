@@ -6,11 +6,11 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/mainstyle.css" rel="stylesheet">
     <link href="css/seriesStyle.css" rel="stylesheet">
-
+    <script src = "js/vue.js"></script>
 </head>
 <body>
 <div class = "header">
-    <form>
+    <form id="log">
         <input type="text" name="login" placeholder="login">
         <br>
         <input type="password" name="password" placeholder="password">
@@ -18,7 +18,6 @@
         <input type="submit" class="btn btn-default" value="Admin" id ="sgn">
     </form>
 
-    <a href="register.html" id="reg"  class="btn btn-default">Sign Up</a>
 
 
     <h1>Ancient Rome</h1>
@@ -30,71 +29,140 @@
     <h1>Series</h1>
 <table class ="imgs">
     <tr>
-        <td> Series 1</td>
+        <a href="https://yandex.ru/video/search?filmId=5573697472624185777&text=сериал%20рим%201%20сезон%201%20серия&reqid=1512827643880467-941323027138563400414674-man1-3690-V">    <td> Series 1</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=5573697472624185777&text=сериал%20рим%201%20сезон%201%20серия&reqid=1512827643880467-941323027138563400414674-man1-3690-V"><img src="pictures/ser1.jpg"/></a>
+           <img v-on:click="getDescr(1)" src="pictures/ser1.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 2</td>
+        <a href="https://yandex.ru/video/search?filmId=10106176169254576740&text=сериал%20рим%201%20сезон%202%20серия&reqid=1512828419694620-1724216197085877171909505-man1-0978-V">   <td> Series 2</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=10106176169254576740&text=сериал%20рим%201%20сезон%202%20серия&reqid=1512828419694620-1724216197085877171909505-man1-0978-V"><img src="pictures/ser2.jpg"/></a>
+           <img v-on:click="getDescr(2)" src="pictures/ser2.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 3</td>
+        <a href="https://yandex.ru/video/search?filmId=14011401351783204116&text=сериал%20рим%201%20сезон%203%20серия&reqid=1512828396900255-240108721676178428608763-man1-0978-V">    <td> Series 3</td> </a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=14011401351783204116&text=сериал%20рим%201%20сезон%203%20серия&reqid=1512828396900255-240108721676178428608763-man1-0978-V"><img src="pictures/ser3.jpg"/></a>
+          <img v-on:click="getDescr(3)"  src="pictures/ser3.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 4</td>
+        <a href="https://yandex.ru/video/search?filmId=6725278276244433415&text=сериал%20рим%201%20сезон%204%20серия&reqid=1512828457340281-932781855646034620915602-man1-3541-V">     <td> Series 4</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=6725278276244433415&text=сериал%20рим%201%20сезон%204%20серия&reqid=1512828457340281-932781855646034620915602-man1-3541-V"><img src="pictures/ser4.jpg"/></a>
+           <img v-on:click="getDescr(4)" src="pictures/ser4.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 5</td>
+        <a href="https://yandex.ru/video/search?filmId=10106176169254576740&text=сериал%20рим%201%20сезон%205%20серия&reqid=1512828473131779-822744572851850183311143-man1-4548-V">    <td> Series 5</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=10106176169254576740&text=сериал%20рим%201%20сезон%205%20серия&reqid=1512828473131779-822744572851850183311143-man1-4548-V"><img src="pictures/ser5.jpg"/></a>
+          <img v-on:click="getDescr(5)" src="pictures/ser5.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 6</td>
+        <a href="https://yandex.ru/video/search?filmId=1279927182953977778&text=сериал%20рим%201%20сезон%206%20серия&reqid=1512828501617036-878008655405356773312515-man1-5965-V">  <td> Series 6</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=1279927182953977778&text=сериал%20рим%201%20сезон%206%20серия&reqid=1512828501617036-878008655405356773312515-man1-5965-V"><img src="pictures/ser6.jpg"/></a>
+        <img v-on:click="getDescr(6)" src="pictures/ser6.jpg"/>
         </td>
     </tr>
     <tr>
-        <td> Series 7</td>
+        <a href="https://yandex.ru/video/search?filmId=3363316796715912323&text=сериал%20рим%201%20сезон%207%20серия&reqid=1512828526535392-984080735721661486310473-man1-1282-V">   <td> Series 7</td></a>
     </tr>
     <tr>
         <td>
 
-            <a href="https://yandex.ru/video/search?filmId=3363316796715912323&text=сериал%20рим%201%20сезон%207%20серия&reqid=1512828526535392-984080735721661486310473-man1-1282-V"><img src="pictures/ser7.jpg"/></a>
+           <img v-on:click="getDescr(7)" src="pictures/ser7.jpg"/>
         </td>
     </tr>
 </table>
 </div>
-<div class="descr">
+<div class="descr" id="dsc">
+    <script>
+        new Vue({
+            el: "#series",
+            methods:{
+                getDescr:function (id ) {
+                    var art =  document.querySelector("div.descr");
+
+                    fetch("http://localhost:8080/series/findone?id="+id,{
+                            method:'GET'
+                        }
+                    ).then(function (resp) {
+
+                        return resp.text();
+
+                    }).then(function (text) {
+                        console.log(text);
+                        document.getElementById('dsc').innerHTML = text[0].name;
+                    }).then(function (){
+
+                        fetch("http://localhost:8080/sercom/getall",{
+                                method:'GET'
+                            }
+                        ).then(function (resp) {
+                            return resp.json();
+                        }).then(function (commemt){
+
+                            var txt = document.createElement("div");
+                            txt.innerHTML = "HollyWars";
+                            txt.style.fontSize = "14pt";
+                            txt.style.fontWeight = "500";
+                            txt.style.color = "#761c19";
+                            art.appendChild(txt);
+                            for(var i =0;i<commemt.length;i++){
+
+                                var cont = document.createElement("div");
+                                cont.className = "article";
+
+                                cont.innerHTML = commemt[i].content;
+                                cont.style.fontWeight=400;
+                                cont.style.fontSize = 14;
+
+                                art.appendChild(cont);
+
+
+                            }
+                            var form = document.createElement("form");
+                            var npt = document.createElement("input");
+                            var sbm =document.createElement("input");
+                            sbm.type="submit";
+                            npt.type="text";
+                            sbm.value="send comment";
+                            npt.placeholder = "Add your comment";
+                            npt.name="content";
+                            form.method="post";
+                            form.action= "auth/sercom/add";
+                            form.appendChild(npt);
+                            form.appendChild(sbm);
+                            art.appendChild(form);
+                        })
+
+                    })
+                }
+
+
+
+
+            }
+        });
+    </script>
 <canvas width="500px" height="500px"></canvas>
 </div>
 </body>

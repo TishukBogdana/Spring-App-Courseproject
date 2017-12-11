@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import ru.ifmo.cs.domain.Article;
-import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.repository.ArticleRepo;
 import ru.ifmo.cs.services.ArticleService;
 

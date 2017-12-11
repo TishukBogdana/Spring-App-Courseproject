@@ -2,9 +2,7 @@ package ru.ifmo.cs.services;
 
 
 
-import ru.ifmo.cs.domain.Article;
 import ru.ifmo.cs.domain.CommentOnArticle;
-import ru.ifmo.cs.domain.Human;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,9 +11,9 @@ import java.util.List;
  * Created by Богдана on 13.11.2017.
  */
 public interface CommentOnArticleService  {
-    List<CommentOnArticle> findByArticle(Article article);
 
-    void removeByArticle(Article article);
+
+    void remove(int id);
 
     Iterable<CommentOnArticle> findAll();
     CommentOnArticle findOne(int id);

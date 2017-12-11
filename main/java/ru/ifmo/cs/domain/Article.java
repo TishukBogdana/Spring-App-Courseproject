@@ -1,40 +1,22 @@
 package ru.ifmo.cs.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 10.12.2017.
  */
-
 @Entity
-@Table(name = "article")
 public class Article {
     private int idArticle;
     private String body;
     private String name;
     private Timestamp dateAdd;
-    private  boolean moderated;
-    private Set<CommentOnArticle> comments;
-
-    public Article(){}
-
-    public Article(int id,String name, String body, Timestamp dateAdd, boolean moderated){
-        this.name = name;
-        this.body = body;
-        this.dateAdd=dateAdd;
-        this.idArticle=id;
-        this.moderated = moderated;
-    }
-
-
+    private Boolean moderated;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "artGen")
-    @SequenceGenerator(name = "artGen", sequenceName = "article_id_article_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "article_id_article_seq1")
     @Column(name = "id_article", nullable = false)
     public int getIdArticle() {
         return idArticle;
@@ -43,15 +25,7 @@ public class Article {
     public void setIdArticle(int idArticle) {
         this.idArticle = idArticle;
     }
-    @Basic
-    @Column(name = "moderated", nullable = false)
-    public boolean isModerated() {
-        return moderated;
-    }
 
-    public void setModerated(boolean moderated) {
-        this.moderated = moderated;
-    }
     @Basic
     @Column(name = "body", nullable = false, length = -1)
     public String getBody() {
@@ -77,8 +51,19 @@ public class Article {
     public Timestamp getDateAdd() {
         return dateAdd;
     }
+
     public void setDateAdd(Timestamp dateAdd) {
         this.dateAdd = dateAdd;
+    }
+
+    @Basic
+    @Column(name = "moderated", nullable = true)
+    public Boolean getModerated() {
+        return moderated;
+    }
+
+    public void setModerated(Boolean moderated) {
+        this.moderated = moderated;
     }
 
     @Override
@@ -92,6 +77,7 @@ public class Article {
         if (body != null ? !body.equals(article.body) : article.body != null) return false;
         if (name != null ? !name.equals(article.name) : article.name != null) return false;
         if (dateAdd != null ? !dateAdd.equals(article.dateAdd) : article.dateAdd != null) return false;
+        if (moderated != null ? !moderated.equals(article.moderated) : article.moderated != null) return false;
 
         return true;
     }
@@ -102,11 +88,7 @@ public class Article {
         result = 31 * result + (body != null ? body.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
+        result = 31 * result + (moderated != null ? moderated.hashCode() : 0);
         return result;
     }
-
-    @OneToMany (mappedBy = "article", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnArticle> getComments(){return  comments;}
-    public void setComments(Set<CommentOnArticle> comments){this.comments = comments;}
-
 }

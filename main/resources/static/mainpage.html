@@ -5,10 +5,11 @@
     <title>Welcome</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/mainstyle.css" rel="stylesheet">
+   <script  src="js/vue.js"></script>
 </head>
-<body>
-<div class = "header">
-    <form method="post" action="/admin">
+<body >
+<div class = "header" id="demo">
+ <form method="post" action="/admin" id="log">
         <input type="text" name="login" placeholder="login">
         <br>
         <input type="password" name="password" placeholder="password">
@@ -16,14 +17,17 @@
        <input type="submit" class="btn btn-default" value="Admin" id ="sgn">
     </form>
 
-    <a href="register.html" id="reg"  class="btn btn-default">Sign Up</a>
+
 
 
     <h1>Ancient Rome</h1>
     <a href="series.html" id="ser" class="btn btn-default">Series</a>
     <a href="articles.html" id="art" class="btn btn-default">Articles</a>
     <a href="news.html" id="news" class="btn btn-default">News</a>
+
 </div>
+
+
 <div id="caution">
    <h1>Caution, spoilers!</h1>
 </div>
@@ -33,5 +37,57 @@
 <div>
 
 </div>
+<div id="comments" class="cmt"></div>
+<script>
+    new Vue({
+        el: '#comments',
+        created: function () {
+            var art =  document.querySelector("div.cmt");
+
+            fetch("http://localhost:8080/tvcom/getall",{
+                    method:'GET'
+                }
+            ).then(function (resp) {
+                return resp.json();
+            }).then(function (commemt){
+
+                var txt = document.createElement("div");
+                txt.innerHTML = "HollyWars";
+                txt.style.fontSize = "14pt";
+                txt.style.fontWeight = "500";
+                txt.style.color = "#761c19";
+                art.appendChild(txt);
+                for(var i =0;i<commemt.length;i++){
+
+                    var cont = document.createElement("div");
+                    cont.className = "article";
+
+                    cont.innerHTML = commemt[i].content;
+                    cont.style.fontWeight=400;
+                    cont.style.fontSize = 14;
+
+                    art.appendChild(cont);
+
+
+                }
+                var form = document.createElement("form");
+                var npt = document.createElement("input");
+                var sbm =document.createElement("input");
+                sbm.type="submit";
+                npt.type="text";
+                sbm.value="send comment";
+                npt.placeholder = "Add your comment";
+                npt.name="content";
+                form.method="post";
+                form.action= "auth/tvcom/add";
+                form.appendChild(npt);
+                form.appendChild(sbm);
+                art.appendChild(form);
+            })
+        }
+
+
+    });
+</script>
 </body>
 </html>

@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ifmo.cs.domain.Article;
 import ru.ifmo.cs.domain.CommentOnArticle;
-import ru.ifmo.cs.domain.Human;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,12 +17,12 @@ import java.util.List;
  */
 
 public interface CommentArticleRepo extends JpaRepository<CommentOnArticle, Integer> {
-    List<CommentOnArticle> findByArticle(Article article);
+
 
   @Modifying
     @Transactional
-    @Query("delete from CommentOnArticle  com where com.article =?1")
-  void removeByArticle(Article article);
+    @Query("delete from CommentOnArticle  com where com.id =?1")
+  void remove(int id);
 
     @Modifying
     @Transactional

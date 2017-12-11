@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ifmo.cs.domain.Article;
-import ru.ifmo.cs.domain.Human;
 
 import java.sql.Timestamp;
 import java.util.List;

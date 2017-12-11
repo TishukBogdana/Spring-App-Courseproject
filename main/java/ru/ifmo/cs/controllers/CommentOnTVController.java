@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ifmo.cs.domain.CommentOnTvSeries;
 import ru.ifmo.cs.services.CommentOnTVSeriesService;
-import ru.ifmo.cs.domain.Human;
-import ru.ifmo.cs.services.HumanService;
 
 import java.sql.Timestamp;
-import java.util.*;
 
 /**
  * Created by Богдана on 04.12.2017.
@@ -26,7 +23,7 @@ public class CommentOnTVController {
     public void update(@RequestParam(value = "content" ) String content, @RequestParam(value = "id") int id){
         service.updateComment(content,new Timestamp(System.currentTimeMillis()), id);
     }
-    @RequestMapping("/tvcom/add")
+    @RequestMapping("/auth/tvcom/add")
    public void addComment(  @RequestParam(value = "content") String content){
        CommentOnTvSeries comment  = new CommentOnTvSeries();
        comment.setContent(content);

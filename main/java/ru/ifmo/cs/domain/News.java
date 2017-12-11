@@ -2,10 +2,9 @@ package ru.ifmo.cs.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
 public class News {
@@ -13,20 +12,11 @@ public class News {
     private String body;
     private String name;
     private Timestamp dateAdd;
-    private Set<CommentOnNews> comments;
-    private boolean moderated;
-    public News(){}
-    public News(int id, String name, String body, Timestamp dateAdd, boolean moderated){
-        this.name =name;
-        this.body =body;
-        this.dateAdd =dateAdd;
-        this.idNews=id;
-        this.moderated = moderated;
-    }
+    private Boolean moderated;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator ="newsgen")
-    @SequenceGenerator(name = "newsgen",sequenceName = "news_id_news_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "news_id_news_seq")
     @Column(name = "id_news", nullable = false)
     public int getIdNews() {
         return idNews;
@@ -66,6 +56,16 @@ public class News {
         this.dateAdd = dateAdd;
     }
 
+    @Basic
+    @Column(name = "moderated", nullable = true)
+    public Boolean getModerated() {
+        return moderated;
+    }
+
+    public void setModerated(Boolean moderated) {
+        this.moderated = moderated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +77,7 @@ public class News {
         if (body != null ? !body.equals(news.body) : news.body != null) return false;
         if (name != null ? !name.equals(news.name) : news.name != null) return false;
         if (dateAdd != null ? !dateAdd.equals(news.dateAdd) : news.dateAdd != null) return false;
+        if (moderated != null ? !moderated.equals(news.moderated) : news.moderated != null) return false;
 
         return true;
     }
@@ -87,21 +88,7 @@ public class News {
         result = 31 * result + (body != null ? body.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
+        result = 31 * result + (moderated != null ? moderated.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "news", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
-    public Set<CommentOnNews> getComments(){return comments;}
-
-    public void setComments(Set<CommentOnNews> comments){this.comments =  comments;}
-
-    @Basic
-    @Column(name = "moderated", nullable = false)
-    public boolean isModerated() {
-        return moderated;
-    }
-
-    public void setModerated(boolean moderated) {
-        this.moderated = moderated;
     }
 }

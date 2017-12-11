@@ -1,7 +1,6 @@
 package ru.ifmo.cs.services;
 
 import ru.ifmo.cs.domain.CommentOnNews;
-import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.domain.News;
 
 import java.sql.Timestamp;
@@ -14,9 +13,9 @@ public interface CommentOnNewsService  {
 
 
 
-    List<CommentOnNews> findByNews(News news);
 
-    void removeByNews(News news);
+
+    void remove(int id);
 
 
     Iterable<CommentOnNews> findAll();

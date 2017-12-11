@@ -38,14 +38,12 @@ input[type="text"],input[type="password"],select{
 @media screen and (min-width: 1205px ) {
     #reg{margin-left: 80% ;
         margin-top: 5px;}
-    form{margin-left: 80%;  }
+    #log{margin-left: 80%;  }
     .header h1{ margin-left: 3%;
         margin-top: -3%;}
 }
 @media screen and ( max-width: 1205px) {
-    #reg{margin-left: 61% ;
-        margin-top: 5px;}
-    form{margin-left: 61%;  }
+  #log{margin-left: 61%;  }
     input[type="text"],input[type="password"]{
         width: 300px;
     }
@@ -53,9 +51,8 @@ input[type="text"],input[type="password"],select{
         margin-top: -7%;}
 }
  @media screen and (max-device-width: 722px) {
-     #reg{margin-left: 5% ;
-         margin-top: 5px;}
-     form{margin-left: 5%;  }
+
+     #log{margin-left: 5%;  }
      input[type="text"],input[type="password"]{
          width: 80%;
          height: 41px;

@@ -2,7 +2,6 @@ package ru.ifmo.cs.services;
 
 
 import ru.ifmo.cs.domain.Article;
-import ru.ifmo.cs.domain.Human;
 
 import java.sql.Timestamp;
 import java.util.List;

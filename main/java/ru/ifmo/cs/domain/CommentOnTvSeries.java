@@ -4,16 +4,18 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Богдана on 07.12.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
-@Table(name = "comment_on_tv_series")
+@Table(name = "comment_on_tv_series", schema = "public", catalog = "postgres")
 public class CommentOnTvSeries {
     private int id;
     private String content;
     private Timestamp dateAdd;
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "comment_on_tv_series_id_seq1")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

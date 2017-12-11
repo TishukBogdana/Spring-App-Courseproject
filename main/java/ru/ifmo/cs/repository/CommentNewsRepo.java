@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ifmo.cs.domain.CommentOnNews;
-import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.domain.News;
 
 import java.sql.Timestamp;
@@ -18,11 +17,11 @@ import java.util.List;
  */
 @Component
 public interface CommentNewsRepo extends JpaRepository<CommentOnNews, Integer> {
-    List<CommentOnNews> findByNews(News news);
+
     @Modifying
     @Transactional
-    @Query("delete from CommentOnNews  com where com.news =?1")
- void removeByNews(News news);
+    @Query("delete from CommentOnNews  com where com.id =?1")
+ void remove(int id);
 
     @Modifying
     @Transactional

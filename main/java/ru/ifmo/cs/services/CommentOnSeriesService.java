@@ -3,8 +3,6 @@ package ru.ifmo.cs.services;
 
 
 import ru.ifmo.cs.domain.CommentOnSeries;
-import ru.ifmo.cs.domain.Human;
-import ru.ifmo.cs.domain.Series;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -15,8 +13,8 @@ import java.util.List;
 public interface CommentOnSeriesService  {
 
 
-    List<CommentOnSeries> findBySeries(Series series);
-    void removeBySeries(Series series);
+
+    void remove(int id);
 
     Iterable<CommentOnSeries> findAll();
     CommentOnSeries findOne(int id);

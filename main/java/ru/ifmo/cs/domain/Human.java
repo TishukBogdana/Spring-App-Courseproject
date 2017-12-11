@@ -1,10 +1,9 @@
 package ru.ifmo.cs.domain;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
 public class Human {
@@ -14,17 +13,9 @@ public class Human {
     private String surname;
     private String login;
 
-    public Human(int id, String name, String sir, String login, String passw){
-        this.name=name;
-        this.surname=sir;
-        this.login = login;
-        this.password = passw;
-        this.idHuman=id;
-    }
-    public Human(){}
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "humgen")
-    @SequenceGenerator(name = "humgen",sequenceName = "human_id_human_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "human_id_human_seq")
     @Column(name = "id_human", nullable = false)
     public int getIdHuman() {
         return idHuman;
@@ -99,5 +90,4 @@ public class Human {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         return result;
     }
-
 }

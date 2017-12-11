@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ifmo.cs.domain.Article;
 import ru.ifmo.cs.domain.CommentOnArticle;
-import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.repository.CommentArticleRepo;
 import ru.ifmo.cs.services.CommentOnArticleService;
 
@@ -22,9 +21,8 @@ public class CommentOnArticleServiceImpl implements CommentOnArticleService {
     @Autowired
     private CommentArticleRepo repo;
 
-    public List<CommentOnArticle> findByArticle(Article article){return repo.findByArticle(article);}
 
-    public     void removeByArticle(Article article){repo.removeByArticle(article);}
+    public     void remove(int id){repo.remove(id);}
  public   Iterable<CommentOnArticle> findAll(){return repo.findAll();}
    public CommentOnArticle findOne(int id){return repo.findOne(id);}
     public void delete(CommentOnArticle comment){repo.delete(comment);}

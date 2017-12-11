@@ -1,12 +1,13 @@
 package ru.ifmo.cs.controllers;
 
-import ru.ifmo.cs.domain.News;
-import ru.ifmo.cs.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.ifmo.cs.domain.News;
+import ru.ifmo.cs.services.NewsService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,14 +18,17 @@ import java.util.List;
 public class NewsController {
     @Autowired
     private NewsService service ;
-    @RequestMapping("/news/offer")
-    public  void addNews(@RequestParam(value = "name") String name, @RequestParam(value = "body") String body){
+    @RequestMapping("auth/news/offer")
+    public  void addNews(HttpServletResponse rsp,@RequestParam(value = "name") String name, @RequestParam(value = "content") String body){
+        try{
         News news = new News();
         news.setName(name);
         news.setBody(body);
         news.setDateAdd(new Timestamp(System.currentTimeMillis()));
         news.setModerated(false);
         service.save(news);
+        rsp.sendRedirect("http://localhost:8080/offer.html");
+        } catch (Exception e){}
     }
     @RequestMapping("/news/getbyname")
     public List<News> findByName(@RequestParam(value = "name") String name){

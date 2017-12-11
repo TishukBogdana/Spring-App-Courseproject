@@ -5,8 +5,6 @@ package ru.ifmo.cs.servimplementations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ifmo.cs.domain.CommentOnSeries;
-import ru.ifmo.cs.domain.Human;
-import ru.ifmo.cs.domain.Series;
 import ru.ifmo.cs.repository.CommentSeriesRepo;
 import ru.ifmo.cs.services.CommentOnSeriesService;
 
@@ -23,8 +21,8 @@ public class CommentOnSeriesServiceImpl implements CommentOnSeriesService {
     @Autowired
     private CommentSeriesRepo repo;
 
-    public List<CommentOnSeries> findBySeries(Series series){return repo.findBySeries(series);}
-    public void removeBySeries(Series series){repo.removeBySeries(series);}
+
+    public void remove(int id){repo.remove(id);}
   public   Iterable<CommentOnSeries> findAll(){return repo.findAll();}
     public CommentOnSeries findOne(int id){return repo.findOne(id);}
     public void delete(CommentOnSeries comment){repo.delete(comment);}

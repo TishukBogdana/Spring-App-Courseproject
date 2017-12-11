@@ -36,7 +36,7 @@ public class SeriesController {
         return service.findByName(name);
     }
     @RequestMapping("/series/findone")
-    public Series findOne(int id){
+    public Series findOne(@RequestParam(value = "id") int id){
         return service.findOne(id);
     }
     @RequestMapping("/series/findall")

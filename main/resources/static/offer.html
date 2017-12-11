@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add content</title>
+    <link href="css/bootstrap.css" rel = "stylesheet">
+    <link href="css/mainstyle.css" rel="stylesheet">
+    <link href = css/offerstyle.css rel ="stylesheet">
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div class = "header">
+    <form id="log">
+        <input type="text" name="login" placeholder="login">
+        <br>
+        <input type="password" name="password" placeholder="password">
+        <br>
+        <input type="submit" class="btn btn-default" value="Admin" id ="sgn">
+    </form>
+
+
+
+    <h1>Ancient Rome</h1>
+    <a href="series.html" id="ser" class="btn btn-default">Series</a>
+    <a href="articles.html" id="art" class="btn btn-default">Articles</a>
+    <a href="news.html" id="news" class="btn btn-default">News</a>
+</div>
+<div id="main">
+    <select id="select" v-on:change="selectCont">
+
+        <option>Article</option>
+        <option>News</option>
+    </select>
+    <form id = "content" method="post" name="content" action="/auth/article/offer">
+         <input type="text" id="name" name="name" placeholder="name">
+        <br>
+         <textarea form="content" name="content" placeholder="content"></textarea>
+        <br>
+        <input type="submit" id="sbm" class="btn btn-default" value="Send">
+    </form>
+</div>
+<script>
+    new Vue({
+        el: "#main",
+        methods:{
+            selectCont: function () {
+                var select = document.getElementById('select');
+
+                if(select.value==='Article'){
+                    document.forms.content.action="auth/article/offer";
+                    document.getElementById('sbm').value="Send article";
+
+                }
+                if(select.value==='News'){
+
+                    document.forms.content.action="auth/news/offer";
+                    document.getElementById('sbm').value="Offer news";
+
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

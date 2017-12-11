@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ifmo.cs.domain.CommentOnSeries;
-import ru.ifmo.cs.domain.Human;
-import ru.ifmo.cs.domain.Series;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -17,11 +15,11 @@ import java.util.List;
  */
 
 public interface CommentSeriesRepo extends JpaRepository<CommentOnSeries, Integer> {
-    List<CommentOnSeries> findBySeries(Series series);
+
     @Modifying
     @Transactional
-    @Query("delete from CommentOnSeries  com where com.series =?1")
-    void removeBySeries(Series series);
+    @Query("delete from CommentOnSeries  com where com.id =?1")
+    void remove(int id);
 
 
     @Modifying

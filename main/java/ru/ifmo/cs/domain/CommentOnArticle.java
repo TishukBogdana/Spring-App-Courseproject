@@ -1,22 +1,21 @@
 package ru.ifmo.cs.domain;
 
-import org.springframework.data.jpa.repository.Modifying;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Богдана on 07.12.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
-@Table(name = "comment_on_article")
+@Table(name = "comment_on_article", schema = "public", catalog = "postgres")
 public class CommentOnArticle {
     private int id;
     private String content;
     private Timestamp dateAdd;
 
-   private Article article;
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "comment_on_article_id_seq1")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -67,14 +66,4 @@ public class CommentOnArticle {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-    @ManyToOne
-    @JoinColumn(name = "article", referencedColumnName = "id_article" , nullable = false)
-    public Article getArticle(){
-        return article;
-    }
-    public void setArticle(Article article){
-        this.article=article;
-    }
-
-
 }

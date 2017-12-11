@@ -3,8 +3,6 @@ package ru.ifmo.cs.servimplementations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ifmo.cs.domain.CommentOnNews;
-import ru.ifmo.cs.domain.Human;
-import ru.ifmo.cs.domain.News;
 import ru.ifmo.cs.repository.CommentNewsRepo;
 import ru.ifmo.cs.services.CommentOnNewsService;
 
@@ -22,9 +20,8 @@ public class CommentOnNewsServiceImpl  implements CommentOnNewsService {
 
 
 
-    public List<CommentOnNews> findByNews(News news){return repo.findByNews(news);}
 
-    public void removeByNews(News news){repo.removeByNews(news);}
+    public void remove(int id){repo.remove(id);}
 
   public   Iterable<CommentOnNews> findAll(){return repo.findAll();}
    public CommentOnNews findOne(int id){return repo.findOne(id);}

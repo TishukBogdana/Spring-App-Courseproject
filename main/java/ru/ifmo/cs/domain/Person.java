@@ -3,7 +3,7 @@ package ru.ifmo.cs.domain;
 import javax.persistence.*;
 
 /**
- * Created by Богдана on 11.11.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
 public class Person {
@@ -11,16 +11,10 @@ public class Person {
     private String name;
     private String surname;
     private String description;
-public Person(){}
-public Person(int id,String name, String surname, String description){
-    this.name =name;
-    this.surname = surname;
-    this.description = description;
-    this.idPerson =id;
-}
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator ="persgen")
-    @SequenceGenerator(name="persgen", sequenceName = "person_id_person_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "person_id_person_seq")
     @Column(name = "id_person", nullable = false)
     public int getIdPerson() {
         return idPerson;

@@ -4,16 +4,18 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Богдана on 07.12.2017.
+ * Created by Богдана on 10.12.2017.
  */
 @Entity
-@Table(name = "comment_on_series")
+@Table(name = "comment_on_series", schema = "public", catalog = "postgres")
 public class CommentOnSeries {
     private int id;
     private String content;
     private Timestamp dateAdd;
-    private Series series;
+
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "comment_on_series_id_seq1")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -64,13 +66,4 @@ public class CommentOnSeries {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         return result;
     }
-    @ManyToOne
-    @JoinColumn(name = "series", referencedColumnName = "id_series" , nullable = false)
-    public Series getSeries(){
-        return series;
-    }
-    public void setSeries(Series series){
-        this.series = series;
-    }
-
 }

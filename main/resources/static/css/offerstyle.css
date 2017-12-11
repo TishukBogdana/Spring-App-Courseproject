@@ -1,0 +1,35 @@
+#content{
+    margin-left: 1%;
+    margin-top: 1%;
+}
+select{
+    margin-top: 5px;
+}
+textarea{
+    border-radius: 7px;
+}
+@media screen and (min-width: 1205px) {
+  select{
+      width :10%;
+  }
+    textarea{
+        width: 90%;
+        height: auto;
+    }
+    #name{
+        width: 30%;
+    }
+}
+@media screen and (max-width: 1205px) {
+    select{
+        width :30%;
+    }
+}
+@media screen and (max-device-width: 722px) {
+    select{
+        width :70%;
+    }
+}
+#name{
+    margin-bottom: 1%;
+}

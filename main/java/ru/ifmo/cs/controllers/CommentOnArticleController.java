@@ -7,6 +7,7 @@ import ru.ifmo.cs.domain.CommentOnArticle;
 import ru.ifmo.cs.services.ArticleService;
 import ru.ifmo.cs.services.CommentOnArticleService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.List;
@@ -28,11 +29,14 @@ public class CommentOnArticleController {
 
 
 
-    @RequestMapping("/artcom/rembyart")
-    public void removeByArticle(@RequestParam(value = "id")int id){
-        service.remove(id);
+    @RequestMapping("/auth/artcom/rem")
+    public void removeByArticle(@RequestParam(value = "id")int id, HttpServletResponse rsp, HttpServletRequest req)  throws  Exception{
+        String log =(String) req.getSession().getAttribute("login");
+        if(log==null){rsp.sendRedirect("http://localhost:8080/errorpage.html");}
+        else{service.remove(id);
+        rsp.sendRedirect("http://localhost:8080/adminpanel.html");}
     }
-    @RequestMapping("/artcom/upd")
+    @RequestMapping("/auth/artcom/upd")
     public void update(@RequestParam(value = "id") int id, @RequestParam(value = "content") String content){
         service.updateComment(content, new Timestamp(System.currentTimeMillis()), id);
     }

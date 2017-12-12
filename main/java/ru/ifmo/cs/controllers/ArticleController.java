@@ -10,6 +10,7 @@ import ru.ifmo.cs.domain.News;
 import ru.ifmo.cs.services.ArticleService;
 import ru.ifmo.cs.services.NewsService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.List;
@@ -34,14 +35,21 @@ public class ArticleController {
         return  service.findByName(name,true);
     }
 
- @PostMapping("/articles/rem")
-  public void remove(@RequestParam(value = "id") int id){
-  service.remove(id);
+ @PostMapping("/auth/articles/rem")
+  public void remove(@RequestParam(value = "id") int id, HttpServletResponse resp, HttpServletRequest req) throws  Exception{
+     String log =(String) req.getSession().getAttribute("login");
+     if(log==null){resp.sendRedirect("http://localhost:8080/errorpage.html");}
+ else{ service.remove(id);
+  resp.sendRedirect("http://localhost:8080/adminpanel.html");}
   }
 
-  @RequestMapping("/auth/article/update")
-  public void update(@RequestParam(value ="id") int id, @RequestParam(value = "name")String name, @RequestParam(value = "body")String body){
-    service.update(id,name, body, new Timestamp(System.currentTimeMillis()));
+  @PostMapping("/auth/articles/upd")
+  public void update(@RequestParam(value ="id") int id, HttpServletResponse resp, HttpServletRequest req) throws Exception{
+    String log =(String) req.getSession().getAttribute("login");
+    if(log==null){resp.sendRedirect("http://localhost:8080/errorpage.html");}
+    else{    service.update(id,true , new Timestamp(System.currentTimeMillis()));
+      resp.sendRedirect("http://localhost:8080/adminpanel.html");}
+
   }
   @PostMapping("/auth/article/offer")
  public void addArticle( HttpServletResponse rsp,@RequestParam (value = "name") String name, @RequestParam(value = "content") String body ){
@@ -56,6 +64,7 @@ public class ArticleController {
           news.setDateAdd(new Timestamp(System.currentTimeMillis()));
           news.setName("New article added");
           news.setBody("new article" + name);
+          news.setModerated(false);
           nService.save(news);
           rsp.sendRedirect("http://localhost:8080/articles.html");
       }catch (Exception e){}

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by Богдана on 10.12.2017.
  */
 @Entity
-@Table(name = "comment_on_article", schema = "public", catalog = "postgres")
+//@Table(name = "comment_on_article", schema = "s225081")
 public class CommentOnArticle {
     private int id;
     private String content;

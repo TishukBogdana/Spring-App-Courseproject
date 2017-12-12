@@ -15,7 +15,8 @@ import java.util.List;
  */
 
 public interface ArticleRepo extends JpaRepository<Article, Integer> {
-    List<Article> findByNameAndModerated(String name, boolean mod);
+    @Query("select a from Article a where upper(a.name)like upper(:name) and a.moderated= :moder ")
+    List<Article> gtbyname(@Param("name") String name, @Param("moder") boolean mod);
     List<Article> findByDateAddIsAfterAndModerated(Timestamp date,boolean mod);
     List<Article> findByDateAddIsBefore(Timestamp date);
     List<Article> findByModerated(boolean moderated);
@@ -26,7 +27,7 @@ public interface ArticleRepo extends JpaRepository<Article, Integer> {
 
    @Modifying
     @Transactional
-    @Query("UPDATE Article  SET  name = :name, body=:body, dateAdd=:timestamp where idArticle= :id")
-    void update(@Param("id") int id, @Param("name") String name, @Param("body") String body,@Param("timestamp") Timestamp timestamp);
+    @Query("UPDATE Article  SET  moderated = :moder,  dateAdd=:timestamp where idArticle= :id")
+    void update(@Param("id") int id, @Param("moder") boolean moder ,@Param("timestamp") Timestamp timestamp);
 }
 

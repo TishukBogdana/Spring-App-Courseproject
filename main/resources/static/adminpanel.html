@@ -2,9 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Console</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/mainstyle.css" rel="stylesheet">
+    <link href="css/consolestyle.css" rel ="stylesheet">
+    <script src="js/vue.js"></script>
 </head>
 <body>
+<div class = "header" >
+    <form id="log"  method="post" action="exit">
 
+        <input type="submit" class="btn btn-default" value="Exit" id ="sgn">
+    </form>
+
+
+
+    <h1>Ancient Rome</h1>
+    <a href="series.html" id="ser" class="btn btn-default">Series</a>
+    <a href="articles.html" id="art" class="btn btn-default">Articles</a>
+    <a href="news.html" id="news" class="btn btn-default">News</a>
+    <a href="Personages.html" id="per" class="btn btn-default">Personage</a>
+    <a href="map.html" id="map" class="btn btn-default">Map</a>
+</div>
+<div id="app">
+    <button class="btn btn-default" v-on:click="getUnmoderated('articles','all')">All articles</button>
+    <br>
+    <button class="btn btn-default" v-on:click="getUnmoderated('news','all')">All news</button>
+    <br>
+    <button class="btn btn-default" v-on:click="getUnmoderated('articles','unmod')">Unmoderated articles</button>
+    <br>
+    <button class="btn btn-default" v-on:click="getUnmoderated('news','unmod')">Unmoderated news</button>
+    <br>
+    <select id="comments" v-on:change="getComments">
+        <option>chooze comments</option>
+        <option>Comments on articles</option>
+        <option>Comments on news</option>
+        <option>Comments on series</option>
+        <option>Comments on serial</option>
+
+    </select>
+
+</div>
+<div class="content"></div>
+<script src="js/console.js">
+
+</script>
 </body>
 </html>

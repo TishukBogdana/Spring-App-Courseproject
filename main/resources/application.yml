@@ -3,14 +3,14 @@
  # oauth2:
   #  client:
    #   clientId: amAdmin
-   #   clientSecret: 01234567
-   #   accessTokenUri: http://localhost:8070/AM-eval-5.5.1/oauth2/access_token
-    #  userAuthorizationUri: http://localhost:8070/AM-eval-5.5.1/oauth2/authorize
-    #  tokenName: access_token
-   #   authenticationScheme: query
-  #    clientAuthenticationScheme: form
-  #  resource:
-  #    userInfoUri: http://localhost:8070/AM-eval-5.5.1/oauth2/tokeninfo
+    #  clientSecret: 01234567
+     # accessTokenUri: http://openam.cs.ifmo.ru:8070/AM-eval-5.5.1/oauth2/access_token
+      #userAuthorizationUri: http://openam.cs.ifmo.ru:8070/AM-eval-5.5.1/oauth2/authorize
+      #tokenName: access_token
+      #authenticationScheme: query
+      #clientAuthenticationScheme: form
+    #resource:
+     # userInfoUri: http://openam.cs.ifmo.ru:8070/AM-eval-5.5.1/oauth2/tokeninfo
 
 security:
   oauth2:

@@ -28,7 +28,7 @@ import javax.servlet.Filter;
 @EnableOAuth2Sso
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-/* @Bean
+ /*@Bean
     @ConfigurationProperties("security.oauth2.client")
     public AuthorizationCodeResourceDetails facebook() {
         return new AuthorizationCodeResourceDetails();
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    private OAuth2ClientContext oauth2ClientContext;
 
     private Filter ssoFilter() {
-        OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/mainpage.html");
+        OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/login");
         OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oauth2ClientContext);
        vkFilter.setRestTemplate(facebookTemplate);
         UserInfoTokenServices tokenServices = new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId());
@@ -59,12 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
- // http.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+//http.addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
    http.csrf().disable().authorizeRequests().antMatchers("*.html").permitAll().and()
          .authorizeRequests().antMatchers("/articles/*").permitAll().and()
            .authorizeRequests().antMatchers("/artcom/*").permitAll().and()
                .authorizeRequests().antMatchers("/auth/**")
-           .authenticated();
+           .authenticated().and().authorizeRequests().antMatchers("/adminpanel.html").authenticated();
+ //http.authorizeRequests().anyRequest().authenticated();
 
    /*.authorizeRequests().antMatchers("/login**").permitAll()
    .antMatchers("/login*").permitAll()

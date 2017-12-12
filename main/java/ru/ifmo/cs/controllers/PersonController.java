@@ -21,7 +21,7 @@ public class PersonController {
         return service.findByNameAndSurname(name, surname);
     }
     @RequestMapping("/pers/findone")
-    public Person findOne(int id){
+    public Person findOne(@RequestParam(value = "id") int id){
         return service.findOne(id);
     }
     @RequestMapping("/pers/findall")

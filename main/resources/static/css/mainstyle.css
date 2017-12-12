@@ -9,7 +9,7 @@
 
 }
 input{margin-top: 5px;}
-#art, #news, #ser{
+#art, #news, #ser, #map,#per{
    margin-bottom: 10px;
 }
 #ser{    margin-left: 3%;
@@ -60,7 +60,7 @@ input[type="text"],input[type="password"],select{
      .header h1{ margin-left: 3%;
          margin-top: 5%;
     }
-     #ser, #art, #news{
+     #art, #news, #ser, #map,#per{
          width: 30%;
      }
      .header{

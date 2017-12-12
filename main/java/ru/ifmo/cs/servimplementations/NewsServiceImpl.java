@@ -28,4 +28,5 @@ public class NewsServiceImpl implements NewsService {
     public News findOne(int id){return repo.findOne(id);}
     public   void delete(News news){repo.delete(news);}
     public void save(News news){repo.save(news);}
+    public void update(int id, boolean mod, Timestamp timestamp){repo.update(id,mod, timestamp);}
 }

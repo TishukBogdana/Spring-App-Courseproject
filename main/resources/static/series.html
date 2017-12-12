@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class = "header">
-    <form id="log">
+    <form id="log"  method="post" action="auth/admin">
         <input type="text" name="login" placeholder="login">
         <br>
         <input type="password" name="password" placeholder="password">
@@ -24,6 +24,8 @@
     <a href="series.html" id="ser" class="btn btn-default">Series</a>
     <a href="articles.html" id="art" class="btn btn-default">Articles</a>
     <a href="news.html" id="news" class="btn btn-default">News</a>
+    <a href="Personages.html" id="per" class="btn btn-default">Personage</a>
+    <a href="map.html" id="map" class="btn btn-default">Map</a>
 </div>
 <div id="series">
     <h1>Series</h1>
@@ -94,74 +96,7 @@
 </table>
 </div>
 <div class="descr" id="dsc">
-    <script>
-        new Vue({
-            el: "#series",
-            methods:{
-                getDescr:function (id ) {
-                    var art =  document.querySelector("div.descr");
-
-                    fetch("http://localhost:8080/series/findone?id="+id,{
-                            method:'GET'
-                        }
-                    ).then(function (resp) {
-
-                        return resp.text();
-
-                    }).then(function (text) {
-                        console.log(text);
-                        document.getElementById('dsc').innerHTML = text[0].name;
-                    }).then(function (){
-
-                        fetch("http://localhost:8080/sercom/getall",{
-                                method:'GET'
-                            }
-                        ).then(function (resp) {
-                            return resp.json();
-                        }).then(function (commemt){
-
-                            var txt = document.createElement("div");
-                            txt.innerHTML = "HollyWars";
-                            txt.style.fontSize = "14pt";
-                            txt.style.fontWeight = "500";
-                            txt.style.color = "#761c19";
-                            art.appendChild(txt);
-                            for(var i =0;i<commemt.length;i++){
-
-                                var cont = document.createElement("div");
-                                cont.className = "article";
-
-                                cont.innerHTML = commemt[i].content;
-                                cont.style.fontWeight=400;
-                                cont.style.fontSize = 14;
-
-                                art.appendChild(cont);
-
-
-                            }
-                            var form = document.createElement("form");
-                            var npt = document.createElement("input");
-                            var sbm =document.createElement("input");
-                            sbm.type="submit";
-                            npt.type="text";
-                            sbm.value="send comment";
-                            npt.placeholder = "Add your comment";
-                            npt.name="content";
-                            form.method="post";
-                            form.action= "auth/sercom/add";
-                            form.appendChild(npt);
-                            form.appendChild(sbm);
-                            art.appendChild(form);
-                        })
-
-                    })
-                }
-
-
-
-
-            }
-        });
+    <script src="js/series.js">
     </script>
 <canvas width="500px" height="500px"></canvas>
 </div>

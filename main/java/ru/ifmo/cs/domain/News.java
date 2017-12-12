@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * Created by Богдана on 10.12.2017.
  */
 @Entity
+//@Table(name = "news" , schema = "s225081")
 public class News {
     private int idNews;
     private String body;

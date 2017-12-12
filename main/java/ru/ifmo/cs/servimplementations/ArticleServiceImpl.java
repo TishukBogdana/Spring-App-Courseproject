@@ -21,7 +21,7 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleRepo repo;
-    public List<Article> findByName(String name, boolean mod){return repo.findByNameAndModerated(name,mod);}
+    public List<Article> findByName(String name, boolean mod){return repo.gtbyname(name,mod);}
 
 
     public List<Article> findByDateAddIsAfter(Timestamp date,boolean mod){return repo.findByDateAddIsAfterAndModerated(date,mod);}
@@ -33,5 +33,5 @@ public class ArticleServiceImpl implements ArticleService {
     public void save(Article article){repo.save(article);}
     public Article findOne(int id){return repo.findOne(id);}
    public void remove(int id){ repo.remove(id);}
-  public   void update(int id ,String name, String body, Timestamp stamp){repo.update(id, name, body,stamp);}
+  public   void update(int id , boolean mod,  Timestamp stamp){repo.update(id, mod, stamp);}
 }

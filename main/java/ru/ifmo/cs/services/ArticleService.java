@@ -23,5 +23,5 @@ public interface ArticleService {
    Article findOne(int id);
     void remove(int id);
 
-    void update(int id, String name, String body, Timestamp stamp);
+    void update(int id,boolean mod, Timestamp stamp);
 }

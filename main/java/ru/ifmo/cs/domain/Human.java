@@ -3,20 +3,21 @@ package ru.ifmo.cs.domain;
 import javax.persistence.*;
 
 /**
- * Created by Богдана on 10.12.2017.
+ * Created by Богдана on 12.12.2017.
  */
 @Entity
-//@Table(name = "human",schema = "s225081")
+//@Table(name = "human", schema = "s225081")
 public class Human {
     private int idHuman;
-    private String name;
     private String password;
-    private String surname;
     private String login;
+    private boolean present;
+
+    public void setPresent(Boolean present) {
+        this.present = present;
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "human_id_human_seq")
     @Column(name = "id_human", nullable = false)
     public int getIdHuman() {
         return idHuman;
@@ -24,16 +25,6 @@ public class Human {
 
     public void setIdHuman(int idHuman) {
         this.idHuman = idHuman;
-    }
-
-    @Basic
-    @Column(name = "name", nullable = false, length = 30)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Basic
@@ -47,16 +38,6 @@ public class Human {
     }
 
     @Basic
-    @Column(name = "surname", nullable = false, length = 30)
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    @Basic
     @Column(name = "login", nullable = false, length = 30)
     public String getLogin() {
         return login;
@@ -66,6 +47,17 @@ public class Human {
         this.login = login;
     }
 
+    @Basic
+    @Column(name = "present", nullable = true)
+    public boolean getPresent() {
+        return present;
+    }
+
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,9 +66,8 @@ public class Human {
         Human human = (Human) o;
 
         if (idHuman != human.idHuman) return false;
-        if (name != null ? !name.equals(human.name) : human.name != null) return false;
+        if (present != human.present) return false;
         if (password != null ? !password.equals(human.password) : human.password != null) return false;
-        if (surname != null ? !surname.equals(human.surname) : human.surname != null) return false;
         if (login != null ? !login.equals(human.login) : human.login != null) return false;
 
         return true;
@@ -85,10 +76,9 @@ public class Human {
     @Override
     public int hashCode() {
         int result = idHuman;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (present ? 1 : 0);
         return result;
     }
 }

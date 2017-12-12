@@ -6,9 +6,15 @@ new Vue({
     created:function () {
      window.onload=function () {
          fetch('http://localhost:8080/check').then(function (resp) {
-      return resp.text();
+
+
+      return resp.json();
          }).then(function (data) {
-             if(data===''){window.location.replace('http://localhost:8080/errorpage.html');}
+             if(data===''){
+                 //window.location.replace('http://localhost:8080/errorpage.html');
+                // console.log(data);
+                 }
+             console.log(data);
          })
      }
     },

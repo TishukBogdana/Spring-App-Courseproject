@@ -2,50 +2,51 @@ package ru.ifmo.cs.controllers;
 
 
 
-import org.apache.catalina.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
 import ru.ifmo.cs.domain.Human;
 import ru.ifmo.cs.services.HumanService;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Богдана on 04.12.2017.
  */
 @RestController
+
 public class HumanController {
 @Autowired
     HumanService service;
 @RequestMapping("/auth/admin")
-    public void login(HttpServletRequest req, HttpServletResponse resp)throws Exception{
+    public void login(@RequestParam(value = "login") String login,@RequestParam(value = "password") String password, HttpServletRequest req, HttpServletResponse resp)throws Exception{
     try{
-      HttpSession session = req.getSession();
-    String log = req.getParameter("login");
-    String passw = req.getParameter("password");
-    Human admin = service.findByLogin(log).get(0);
+    Human admin = service.findByLogin(login).get(0);
     if(!(admin==null)){
-    if(admin.getPassword().equals(passw)){
-        session.setAttribute("login",log);
+    if(admin.getPassword().equals(password)){
+     HttpSession ses =  req.getSession();
+     ses.setAttribute("login", login);
+     service.update(true);
         resp.sendRedirect("http://localhost:8080/adminpanel.html");
     }else {
         resp.sendRedirect("http://localhost:8080/errorpage.html");
-
     }
     }
     }catch (Exception e){}
 }
 @RequestMapping("/check")
-    public String check(HttpServletRequest req){
-    return (String) req.getSession().getAttribute("login");
+    public Human check(){
+   Human human = service.findByPresent(true).get(0);
+  return human;
 }
 @RequestMapping("/exit")
-    public void exie(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-        req.getSession().invalidate();
+    public void exiT(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+    service.update(false);
+
         resp.sendRedirect("http://localhost:8080/mainpage.html");
 }
 }

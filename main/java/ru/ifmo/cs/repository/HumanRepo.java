@@ -14,16 +14,20 @@ import java.util.List;
  */
 
 public interface HumanRepo extends JpaRepository<Human, Integer> {
-    List<Human> findByName(String name);
-    List<Human>  findBySurname(String sirname);
+
     List<Human> findByLogin(String login);
-    List<Human> findByNameAndSurname(String name, String sirname);
+  List<Human> findByPresent(boolean present);
     @Modifying
     @Transactional
     @Query("delete from Human  human where human.login =?1")
     void removeByLogin(String login);
     @Modifying
     @Transactional
-    @Query(" update Human set name=:name, surname=:surname, login=:login, password=:password where login=:prevLog")
-    void updateHuman(@Param("name") String name, @Param("surname") String surname, @Param("login") String login, @Param("password") String passw, @Param("prevLog") String prevLOg);
+    @Query(" update Human set  login=:login, password=:password where login=:prevLog")
+    void updateHuman( @Param("login") String login, @Param("password") String passw, @Param("prevLog") String prevLOg);
+    @Modifying
+    @Transactional
+    @Query(" update Human set  present=:present ")
+    void update( @Param("present") boolean pres);
+
 }

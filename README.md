@@ -5,7 +5,7 @@
 * Frontend: Vue.js
 0Auth is also used
 ## About project
-This project is an implementation of historical net about Ancient Rome. 
+This project is an implementation of historical net about Ancient Rome. This product also has modest and laconic adaptive design which is comfortable for user.
 
 ## Functionality
 Unauthorized users of this product can:

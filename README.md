@@ -13,6 +13,7 @@ Unauthorized users of this product can:
 * read something about historical characters
 * view news and comments
 * authorize
+
 Authorized users can:
 * Do the same as unauthorized users
 * Post articles about Ancient Rome
